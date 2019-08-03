@@ -1,0 +1,58 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | من به عنوان کارفرما</title>
+    <link href="{% static 'css/info_table.css' %}" rel="stylesheet">
+{% endblock %}
+{% block main-container %}
+    <div style="text-align: center;">
+        <a class="btn-link" style="height: 100%;" href="/new_project/">
+            <i class="fa fa-2x fa-plus-square"></i>
+        <span style="vertical-align: middle">
+    اضافه کردن یک موقعیت
+            </span>
+        </a>
+    </div>
+    <div style="text-align: center; font-size: x-large;margin-bottom: 10px">من به عنوان کارفرما</div>
+    <table class="table-fill">
+        <thead>
+        <tr>
+            <th class="text-center">عنوان پروژه</th>
+            <th class="text-center">تاریخ ایجاد</th>
+            <th class="text-center">تعداد پیشنهادات</th>
+            <th class="text-center">وضعیت</th>
+            <th class="text-center">عملیات</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        {% for position in projects %}
+            <tr>
+                <td class="text-center">{{ position.title }}</td>
+                <td class="text-center">{{ position.timestamp_year }}/{{ position.timestamp_month }}/{{ position.timestamp_day }}</td>
+                <td class="text-center">{{ position.offerCount }}</td>
+                <td class="text-center">
+                    {% if position.is_confirmed %}
+                        تایید شده است.
+                    {% else %}
+                        در انتظار تایید
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <a href="/position/{{ position.id }}">
+                        مشاهده
+                    </a>
+                    {% if not position.is_confirmed %}
+                        |
+                        <a href="/position-remove/{{ position.id }}">
+                            حذف
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

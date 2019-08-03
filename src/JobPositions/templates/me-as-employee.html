@@ -1,0 +1,49 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | من به عنوان کارفرما</title>
+    <link href="{% static 'css/info_table.css' %}" rel="stylesheet">
+{% endblock %}
+{% block main-container %}
+    <div style="text-align: center; font-size: x-large;margin-bottom: 10px">من به عنوان مجری</div>
+    <table class="table-fill">
+        <thead>
+        <tr>
+            <th class="text-center">عنوان پروژه</th>
+            <th class="text-center">تاریخ ثبت پیشنهاد</th>
+            <th class="text-center">قیمت پیشنهادی</th>
+            <th class="text-center">وضعیت</th>
+            <th class="text-center">عملیات</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        {% for offer in offers %}
+            <tr>
+                <td class="text-center">{{ offer.position.title }}</td>
+                <td class="text-center">{{ offer.offer_submit_Date_time_year }}/{{ offer.offer_submit_Date_time_month }}/{{ offer.offer_submit_Date_time_day }}</td>
+                <td class="text-center">{{ offer.price }}</td>
+                <td class="text-center">
+                    {% if offer.is_chosen %}
+                        انتخاب شده‌اید. با شما تماس گرفته خواهد شد.
+                    {% else %}
+                        {% if offer.position.is_closed %}
+                            متاسفانه این موقعیت بسته شده و شما انتخاب نشده‌اید.
+
+                        {% else %}
+                            در حال بررسی
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <a href="/offering/{{ offer.position.id }}">
+                        مشاهده
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

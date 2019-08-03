@@ -1,0 +1,151 @@
+@font-face {
+    font-family: iran-sans;
+    src: url(../fonts/iran-sans.ttf);
+}
+body {
+    font-family: iran-sans !important;
+    direction: rtl;
+    background-color: #ffffff;
+}
+
+header {
+    background-color: #444b55;
+    direction: ltr;
+    padding: 10px;
+}
+
+footer {
+    background-color: #232323;
+    clear: both;
+    margin-bottom: 0;
+    padding: 30px;
+    color: #ffffff;
+}
+
+footer ul {
+    list-style: none;
+}
+footer a{
+    color: #ffffff !important;
+}
+a, .btn-link :hover{
+    text-decoration: dashed !important;
+
+}
+
+main {
+    margin-top: 20px;
+}
+
+#side-menu{
+    background-color: #444b55;
+    color: #d7d7d7;
+    font-size: large;
+    padding: 0;
+}
+
+#side-menu ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#side-menu ul > li{
+    padding: 5px;
+    border-bottom: solid #82868d thin;
+}
+
+#side-menu ul > li > span{
+    /*display: inline-block;*/
+    font-size: small;
+    vertical-align: middle;
+}
+
+#side-menu ul > li > img{
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
+}
+
+#header-logo {
+    color: #ffffff;
+    display: inline;
+    clear: both;
+    float: right;
+}
+
+#header-logo > img {
+    display: block;
+    padding-right: 10px;
+}
+
+#footer-header{
+    direction: ltr;
+}
+
+#footer-logo {
+    float: right;
+    color: #ffffff;
+    display: inline;
+    padding: 10px;
+    clear: both;
+}
+
+#footer-logo > img {
+    display: block;
+}
+
+#user-img {
+    float: left;
+    display: inline;
+    height: 50px;
+    width: 50px;
+}
+
+#header-user-text{
+    float: left;
+    margin-top: 5px;
+}
+
+#user-info {
+    display: inline;
+    padding: 10px;
+}
+
+#user-info > img {
+    margin-right: 10px;
+}
+
+#user-info > img {
+    display: inline;
+}
+
+#log-out {
+    color: #d15d5d;
+}
+
+#footer-rules{
+    margin-right: 10px;
+}
+
+#footer-privacy{
+    color: #d15d5d;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+#footer-links {
+    float: right;
+    margin-right: 10px;
+    position: relative;
+}
+
+#footer-programmers-url {
+}
+
+#footer-copy-right{
+    float: left;
+    color: #5581a5;
+}

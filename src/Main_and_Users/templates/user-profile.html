@@ -1,0 +1,20 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/search.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "js/position.js" %}"></script>
+{% endblock %}
+{% block main-container %}
+
+<style>
+    footer{
+        position: relative;
+        bottom: -100px;
+    }
+</style>
+
+{% endblock %}

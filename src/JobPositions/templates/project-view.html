@@ -1,0 +1,325 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <script src="{% static "js/position.js" %}"></script>
+{% endblock %}
+{% block main-container %}
+    <article class="col-md-10">
+        <div class="box">
+            <div class="box-header">
+
+                <div class="offer-count">
+                        <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        {{ position.offerCount }}
+                    </span>
+                </div>
+                <h3>
+                    {{ position.title }}
+                </h3>
+
+                <div class="type">
+                    {{ position.job_type }}
+                </div>
+            </div>
+            <div class="required-skills">
+                مهارت‌های لازم:
+
+                {% for skill in position.skills.all %}
+
+                    <a style="cursor: pointer;" href="/search/0///1/1/1?skills={{ skill.name }}"><span dir="ltr"
+                                                                                                       class="well required-skill">
+                                {{ skill.name }}
+                    </span></a>
+
+                {% endfor %}
+            </div>
+            <div class="box-main">
+                <div class="files">
+                    <div class="deadlines" class="well">
+                        <div>
+                            <span>تاریخ بسته شدن موقعیت در سامانه: </span>
+                            <span>{{ position.closing_time_year }}/{{ position.closing_time_month }}/{{ position.closing_time_day }}</span>
+                        </div>
+                        <div>
+                            <span>حداکثر زمان ممکن برای تحویل پروژه(ددلاین): </span>
+                            <span>{{ position.deadline_year }}/{{ position.deadline_month }}/{{ position.deadline_day }}</span>
+                        </div>
+                    </div>
+
+                    <h5>فایل‌های پیوست</h5>
+
+                    {% if position.files|length == 0 %}
+                        <div style="font-size: x-small;color: red;">
+            فایلی پیوست نشده است.
+                        </div>
+                    {% endif %}
+                    {% for file in position.files %}
+                        <a href="/media/{{ file.filename }}"> <div>
+                            <a href="/media/{{ file.filename }}"><i class="fa fa-file-o"></i><span>{{ file.title }}</span></a>
+                        </div></a>
+                    {% endfor %}
+                </div>
+
+            <div style="clear: both;"></div>
+                <div class="description">
+                    <h5>توضیحات تکمیلی</h5>
+
+                    <div class="description-box well">
+                        <p>
+                            {{ position.description }}
+                        </p>
+                    </div>
+                </div>
+                {% if not position.is_confirmed %}
+                    <div style="text-align: center">
+                        <a class="btn btn-primary" href="/edit-project/{{ position.id }}">ویرایش</a>
+
+                        <div class="edit-dsc">
+                            تا قبل از ثبت اولین پیشنهاد، امکان ویرایش وجود دارد.
+                        </div>
+                    </div>
+                {% elif position.has_chosen %}
+                    <div style="text-align: center">
+                        <a class="btn btn-primary" href="/comment/{{ position.id }}">ثبت نظر در مورد این موقعیت کاری</a>
+
+                        <div class="edit-dsc">
+                            لطفا هنگام به پایان رسیدن وقعیت کاری ثبت شده نظر خود را در مورد پیشنهاددهندگان ثبت نمایید. نظرات شما هم به بهبود پیشنهادهای بعدی ما به شما کمک خواهد کرد و هم تاثیر مثبتی در امتیازات شما در سامانه خواهد داشت.
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if position.personCount == 0 %}
+            <div class="box pay-please">
+                <div id="pay-please-dsc">
+                    <em>{{ position.offerCount }}</em>
+                    نفر برای پروژه‌ی شما پیشنهاد همکاری فرستاده‌ند، جهت دیدن اطلاعات کامل دو نفر از این نفرات لطفا مبلغ
+                    <em>۵۰،۰۰۰</em>
+                    ریال را پرداخت نمایید
+                </div>
+                <a class="btn btn-success">ورود به صفحه‌ی پرداخت</a>
+            </div>
+
+        {% else %}
+
+            <div id="offers">
+                <div id="offers-dsc">
+                    توجه! در حال حاضر شما امکان مشاهده اطلاعات کامل حداکثر {{ position.remain_persion_count }} نفر از پیشنهاد
+                    دهندگان را دارید. لذا
+                    پیشنهاد می شود پس از انجام بررسی های لازم روی
+                    رزومه کوتاهی که از پیشنهاد دهندگان ارائه شده است و همچنین بررسی پیشنهاد همکاری آن‌ها نسبت به انتخاب
+                    فرد مناسب و مشاهده اطلاعات کامــل وی
+                    اقدام نمایید.
+
+                </div>
+                {% for offer in offers %}
+                    <div class="offer-box well {% if offer.is_chosen %}offer-box-selected{% endif %}"
+                         id="offer{{ offer.id }}">
+                        <div class="offer-number {% if offer.is_chosen %}offer-number-selected{% endif %}">
+                        <span>
+{{ forloop.counter }}
+                        </span>
+                        </div>
+                        <div class="offer-dsc">
+                            <div class="offer-header">
+                                <a class="btn btn-success {% if offer.is_chosen %}disabled{% endif %}"
+                                   {% if not offer.is_chosen %}onclick="getUserData('{{ offer.id }}')" {% endif %}>
+                                    {% if offer.is_chosen %}
+                                        این فرد انتخاب شده است
+                                    {% else %}
+                                        مشاهده‌ی اطلاعات کامل
+                                    {% endif %}
+
+                                </a>
+                                <span>
+                                    تاریخ ثبت:
+                                </span>
+                                <span>
+                                    {{ offer.offer_submit_Date_time_year }}/{{ offer.offer_submit_Date_time_month }}/{{ offer.offer_submit_Date_time_day }} {{ offer.offer_submit_Date_time_time }}
+                                </span>
+                            </div>
+                            <div style="clear: both;"></div>
+                            <div class="col-md-12 infos">
+                                <div class="col-md-6">
+                                    <div class="offer-dsc-info well">
+                                        <div class="dsc-header">
+                                            اطلاعات پیشنهاد
+                                        </div>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td>
+                                                    <i class="fa fa-clock-o"></i>
+                                                </td>
+                                                <td>
+                                                    مدت زمان انجام:
+                                                </td>
+                                                <td>
+                                                    {{ offer.time_needed }}
+                                                    روز
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i class="fa fa-calendar-o"></i>
+                                                </td>
+                                                <td>
+                                                    تاریخ شروع:
+                                                </td>
+                                                <td>
+                                                    {{ offer.start_date_year }}/{{ offer.start_date_month }}/{{ offer.start_date_day }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i class="fa fa-money"></i>
+                                                </td>
+                                                <td>
+                                                    قیمت پیشنهادی:
+                                                </td>
+                                                <td>
+                                                    <span dir="ltr">
+                                                    {{ offer.price }}
+                                                        </span>
+                                                    <span>
+&nbsp;                                                         ریال
+                                                        </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="worker-dsc-info well">
+                                        <div class="dsc-header">
+                                            اطلاعات مجری
+                                        </div>
+                                        <div>
+                                        <span class="sat-rate statistics well">
+                                            ٪
+                                            {{ offer.user_score }}
+                                        </span>
+                                            رضایت از این مجری
+                                        </div>
+                                        <div>
+                                        <span class="works-count statistics well">
+                                            {{ offer.user_works }}
+                                        </span>
+                                            کار به این مجری سپرده شده است.
+                                        </div>
+                                        <div>
+                                        <span class="age statistics well">
+                                            {{ offer.user.age }}
+                                        </span>
+                                            سال سن، ساکن
+                                            {{ offer.user.city }}
+                                        </div>
+                                        <div class="degree">
+                                            {{ offer.user.last_educational_level }}
+                                            از
+                                            {{ offer.user.last_educational_University }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="skills">
+                                <span>
+                                    مهارت‌ها:
+                                </span>
+                                    {% for skill in offer.user.skills.all %}
+                                        <span class="well required-skill have-skill">
+                        {{ skill.name }}
+                    </span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% if offer.is_chosen %}
+                                <div class="col-md-12 worker-contact well">
+                                    <img src='/media/{{ offer.user_photo }}' width="60px" height="60px"/>
+
+                                    <div class="name">{{ offer.user.user.first_name }} {{ offer.user.user.last_name }}</div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <i class="fa fa-phone-square" style="vertical-align: bottom"></i>
+                                            </td>
+                                            <td>
+                                                تلفن‌های تماس
+                                            </td>
+                                            <td>
+                                                {% if offer.user.is_mobile_number_confirmed %}
+                                                    {{ offer.user.mobile_number }} -
+                                                {% endif %}
+                                                {{ offer.user.phone_number }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <i class="fa fa-envelope"></i>
+                                            </td>
+                                            <td>
+                                                پست الکترونیکی
+                                            </td>
+                                            <td>
+                                                {{ offer.user.user.email }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div style="clear: both"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}
+
+{% block last_body %}
+    <div id="extraUser" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content modal-dialog" style="width: 400px">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div style="clear: both"></div>
+                    <p style="text-align: center">
+                        تعداد انتخاب‌های شما برای مشاهده‌ی اطلاعات تکمیلی پیشنهاددهندگان به سقف خود یعنی
+                        <em>{{ position.personCount }}</em>
+                        نفر رسیده است. برای مشاده‌ی اطلاعات سایر پشنهاددهدنگان به روش زیر اقدام نمایید:
+                    </p>
+
+                    <form>
+                        <div class="form-group" style="text-align: center">
+                            <select class="form-control" id="worker-count" onchange="changePay()">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <label for="worker-count">نفر</label>
+
+                            <div id="overall-pay">
+                                مبلغ قابل پرداخت
+                                <em id="overall-pay-number">
+                                    ۵۰,۰۰۰
+                                </em>
+                                ریال
+                            </div>
+                            <a class="btn btn-success">ورود به صفحه‌ی پرداخت</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

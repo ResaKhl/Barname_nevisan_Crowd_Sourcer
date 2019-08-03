@@ -1,0 +1,241 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/search.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "js/position.js" %}"></script>
+{% endblock %}
+
+{% block main-container %}
+
+
+<main class="container">
+    <div class="row">
+
+        <article class="col-md-10 col-md-offset-0" style="">
+        <h4 style="color: black; text-align: right; margin-bottom: 20px; margin-right: 50px;">
+            ثبت نظر در مورد موقعیت کاری
+            <a href="#">
+                {{ job_position.title }}
+            </a>
+        </h4>
+            {% if not employee_comment %}
+                {% for offer in chosen_offer %}
+                <div id="search-box" class="well" style="right: 6%; padding: 5px; padding-left: 0px;">
+                    <form method="post" role="form" action="/get_comment/{{ offer.id }}/">
+                    {% csrf_token %}
+                    <div>
+                        <div class="form-group" id="bunch-div{{ offer.id }}">
+                            <div>
+                                <img src='/media/{{ offer.Job_Position_Offer.user.photo }}' style="margin-right: 20px; border-radius: 10%; height: 60px; width: 60px; margin-top: 10px;">
+                                <span>{{ offer.Job_Position_Offer.user.user.first_name }}</span>
+                                <span>{{ offer.Job_Position_Offer.user.user.last_name }}</span>
+
+                                <select id='have-worked-with{{ offer.id }}' type="text" name="have-worked-with" class="form-control register-inputs" style="text-align-last:center; float: left; margin: 25px; margin-right: -10px;  margin-bottom: 10px;">
+                                    <option selected="selected" class="select-options">همکاری داشته‌ام</option>
+                                    <option class="select-options">همکاری نداشته‌ام</option>
+                                </select>
+
+                                <span style="float: left; margin: 30px; margin-top: 35px; font-size: 12px;">با ایشان در این موقعیت کاری</span>
+
+                            </div>
+                            <textarea type="text" id="description{{ offer.id }}" name="description" class="form-control register-inputs" placeholder="نظر شما در مورد همکاری / علت عدم همکاری"  style="width: 96%; margin-right: 1%; min-height: 250px; resize: none;"></textarea>
+
+                            <div style="margin: 5px; margin-top: 10px;">
+                                <p style="margin-top: 20px; margin-right: 10px;">
+                                    از یک تا پنج به این فرد چند امتیاز می‌دهید؟
+                                </p>
+                                <select class="form-control register-inputs" id="id_scores" name="scores" style="text-align-last:center;width: 75px; margin-right: 295px; margin-top: -40px;">
+                                    <option value="1">۱</option>
+                                    <option value="2">۲</option>
+                                    <option value="3">۳</option>
+                                    <option value="4">۴</option>
+                                    <option value="5">۵</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" id="submit_button{{ offer.id }}" class="btn btn-success" style="width: 20%;margin-right: 35%; margin-top: 4%; margin-bottom: -1%; position: relative; top: -12px;">ثبت نظر</button>
+
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+                {% endfor %}
+
+                {% if this_offers %}
+                {% for offer1 in this_offers %}
+                <div id="search-box" class="well" style="width: 85%; position: relative; right: 6%; padding: 5px; padding-left: 0px;">
+                    <div>
+                            <div>
+                                <img src='/media/{{ offer1.Job_Position_Offer.user.photo }}' style="margin-right: 20px; border-radius: 10%; height: 60px; width: 60px; margin-top: 10px; margin-bottom: 50px">
+                                    <span style="position: relative; top: -15px;">{{ offer1.Job_Position_Offer.user.user.first_name }}</span>
+                                    <span style="position: relative; top: -15px;">{{ offer1.Job_Position_Offer.user.user.last_name }}</span>
+                                <br>
+                                <span style="margin: 12px; margin-top: 50px;">با ایشان در این موقعیت کاری:</span>
+                                {% if offer1.commentScore.cooperation_status == 'همکاری داشته‌ام' %}
+                                    <span style=" margin: 25px; margin-right: -10px;  margin-bottom: 10px;">همکاری داشته‌ام</span>
+                                {% else %}
+                                    <span style="margin: 25px; margin-right: -10px;  margin-bottom: 10px;">همکاری نداشته‌ام</span>
+                                {% endif %}
+
+                            </div>
+                            <br>
+                            <div name="description" style="display: block">
+                                <span style="margin-top: 20px; margin-right: 10px; position: relative; top: 10px;">نظر شما در مورد این مجری:</span>
+                                <span style="margin: 25px; margin-right: 10px;  margin-bottom: 10px; position: relative; top: 10px;">{{ offer1.commentScore.comment_Employer_to_Employee }}</span>
+                            </div>
+                            <br>
+                            <div style="margin: 5px; margin-top: 10px;">
+                                <span style="margin-top: 20px; margin-right: 7px;">
+                                   امتیاز شما از یک تا پنج به این مجری:
+                                </span>
+                                <span style="margin: 25px; margin-right: 10px;  margin-bottom: 10px;">{{ offer1.commentScore.score_Employer_to_Employee }}</span>
+
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <a href="/position/{{ job_position.id }}/" type="submit" id="submit_button{{ chosen_offer.id }}" class="btn btn-success" style="width: 20%;margin-right: 35%; margin-top: 5%; margin-bottom: 4%; position: relative; top: -12px;">بازگشت به موقعیت</a>
+            {% endif %}
+
+            {% if employee_comment%}
+                {% if not comment_submited %}
+                    <div id="search-box" class="well" style="width: 85%; position: relative; right: 6%; padding: 5px; padding-left: 0px;">
+                <form method="post" role="form" action="/get_comment/{{ chosen_offer.id }}/">
+                {% csrf_token %}
+                <div>
+                    <div class="form-group" id="bunch-div{{ chosen_offer.id }}">
+                        <div>
+                            <img src='/media/{{ chosen_offer.JobPosition.user.photo }}' style="margin-right: 20px; border-radius: 10%; height: 60px; width: 60px; margin-top: 10px;">
+                            <span>{{ chosen_offer.JobPosition.user.user.first_name }}</span>
+                            <span>{{ chosen_offer.JobPosition.user.user.last_name }}</span>
+                        </div>
+                        <textarea type="text" id="description{{ chosen_offer.id }}" name="description" class="form-control register-inputs" placeholder="نظر شما در مورد همکاری / علت عدم همکاری"  style="width: 96%; margin-right: 1%; min-height: 250px; resize: none;"></textarea>
+
+                        <div style="margin: 5px; margin-top: 10px;">
+                            <p style="margin-top: 20px; margin-right: 10px;">
+                                از یک تا پنج به این فرد چند امتیاز می‌دهید؟
+                            </p>
+                            <select class="form-control register-inputs" id="id_scores" name="scores" style="text-align-last:center;width: 75px; margin-right: 295px; margin-top: -40px;">
+                                <option value="1">۱</option>
+                                <option value="2">۲</option>
+                                <option value="3">۳</option>
+                                <option value="4">۴</option>
+                                <option value="5">۵</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="submit_button{{ chosen_offer.id }}" class="btn btn-success" style="width: 20%;margin-right: 40%; margin-top: 4%; margin-bottom: -1%; position: relative; top: -12px;">ثبت نظر</button>
+
+                    </div>
+
+                </div>
+                </form>
+            </div>
+                {% endif %}
+                {% if comment_submited %}
+                <div id="search-box" class="well" style="width: 85%; position: relative; right: 6%; padding: 5px; padding-left: 0px;">
+                <div>
+                        <div>
+                            <img src='/media/{{ chosen_offer.JobPosition.user.photo }}' style="margin-right: 20px; border-radius: 10%; height: 60px; width: 60px; margin-top: 10px; margin-bottom: 50px">
+                                <span style="position: relative; top: -15px;">{{ chosen_offer.JobPosition.user.user.first_name }}</span>
+                                <span style="position: relative; top: -15px;">{{ chosen_offer.JobPosition.user.user.last_name }}</span>
+                            <br>
+                        </div>
+                        <br>
+                        <div name="description" style="display: block">
+                            <span style="margin-top: 20px; margin-right: 10px; position: relative; top: 10px;">نظر شما در مورد این مجری:</span>
+                            <span style="margin: 25px; margin-right: 10px;  margin-bottom: 10px; position: relative; top: 10px;">{{ chosen_offer.commentScore.comment_Employee_to_Employer }}</span>
+                        </div>
+                        <br>
+                        <div style="margin: 5px; margin-top: 10px;">
+                            <span style="margin-top: 20px; margin-right: 7px;">
+                               امتیاز شما از یک تا پنج به این مجری:
+                            </span>
+                            <span style="margin: 25px; margin-right: 10px;  margin-bottom: 10px;">{{ chosen_offer.commentScore.score_Employee_to_Employer }}</span>
+
+                        </div>
+                </div>
+            </div>
+            {% endif %}
+                <a href="/position/{{ job_position.id }}/" type="submit" id="submit_button{{ chosen_offer.id }}" class="btn btn-success" style="width: 20%;margin-right: 40%; margin-top: 3%; margin-bottom: 3%; position: relative; top: -12px;">بازگشت به موقعیت</a>
+        {% endif %}
+        </article>
+    </div>
+</main>
+
+<style>
+    .needed-skill{
+        margin-right: 10px;
+        position: relative;
+        top: -20px;
+    }
+    .select-options{
+        text-align:center;
+        height: 100px;
+    }
+    .register-inputs{
+        position: relative;
+        width: 300px;
+        height: 40px !important;
+        right: 5px;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+a:hover{
+        text-decoration: none;
+    }
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+html{margin: -20px;}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+</style>
+{% endblock %}
+

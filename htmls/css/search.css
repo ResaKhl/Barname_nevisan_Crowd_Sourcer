@@ -1,0 +1,177 @@
+#search-box {
+    background-color: #444b55;
+    color: #ffffff;
+}
+
+main input[type="text"] {
+    height: 28px;
+}
+
+.added-skill {
+    background-color: #343434;
+    border: none;
+    margin: 0;
+    padding: 5px 10px;
+    color: #ffffff;
+}
+
+.result-skill {
+    background-color: #343434;
+    font-size: smaller;
+    border: none;
+    margin: 0 0 0 2px;
+    padding: 2px 10px;
+    vertical-align: middle;
+    color: #ffffff;
+}
+
+.added-skill img {
+    height: 18px;
+    width: 18px;
+}
+
+#add-skill {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+}
+
+#skill {
+    width: 30%;
+    display: inline;
+    /*height: 30px;*/
+    vertical-align: middle;
+}
+
+#search-title {
+    width: 30%;
+    display: inline;
+    margin-left: 10%;
+    vertical-align: middle;
+}
+
+#search-group {
+    width: 40%;
+    display: inline;
+    height: 28px;
+    vertical-align: middle;
+}
+
+.search-result {
+    width: 100%;
+    border: solid #000000 1px;
+    margin-bottom: 10px;
+}
+
+.result-content {
+    width: 100%;
+    padding: 20px;
+}
+
+.result-title {
+    font-weight: bolder;
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+.result-type {
+    color: #2779ea;
+    font-size: smaller;
+}
+
+.result-description-separator {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.description {
+    margin-bottom: 5px;
+}
+
+.result-date {
+    color: #555555;
+    font-size: smaller;
+}
+
+.result-skills-label {
+    vertical-align: middle;
+    font-size: smaller;
+}
+
+.promote {
+    float: left;
+    width: 80px;
+    padding: 5px;
+    text-align: center;
+}
+
+.result-offer {
+    font-size: smaller;
+    float: left;
+    clear: both;
+    color: #17a574;
+}
+
+.result-offer-count {
+    color: #ffffff;
+    background-color: #17a574;
+    padding: 3px;
+    margin: 0;
+    border: 0;
+}
+
+.promote-fast {
+    background-color: red;
+    color: #ffffff;
+}
+
+.promote-special {
+    background-color: #ffd153;
+    color: #000000;
+}
+
+.result-see-work {
+    width: 100%;
+    background-color: #444b55;
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+}
+
+.search-second-row {
+    margin-left: 16px;
+}
+
+#result-pages {
+    /*width: 100%;*/
+    text-align: center;
+    margin: 40px;
+}
+
+#result-pages img{
+    height: 36px;
+    width: auto;
+}
+
+#previous-page{
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+
+.page-no{
+    border-radius: 50%;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+
+    background: #e4e4e4;
+    color: #666;
+    text-align: center;
+}
+
+.page-no-selected{
+    background-color: #444b55 !important;
+    color: #ffffff !important;
+}

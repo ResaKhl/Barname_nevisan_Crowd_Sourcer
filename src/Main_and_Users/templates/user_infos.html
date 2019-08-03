@@ -1,0 +1,287 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <script src="{% static "js/position.js" %}"></script>
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/search.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/search.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <script src="{% static "js/position.js" %}"></script>
+{% endblock %}
+
+
+{% block main-container %}
+
+    <main class="container">
+    <div class="row">
+        <h3 style="color: #383838; text-align: center; margin-bottom: 20px; margin-left: 39px;">تنظیمات پروفایل کاربر</h3>
+        <article class="col-md-10 col-md-offset-0" style="">
+
+
+            <div class="well" style="position: relative; left: 30px; padding: 5px; padding-left: 0; border: black; width: 82%;background-color: rgb(68, 75, 85); margin-right: 100px;">
+                <form method="post" role="form" enctype="multipart/form-data" action="/profile_pic_setting/">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                        <p>
+                            <input id="id_image" type="file" class="" name="image">
+                         </p>
+                        <button type="submit" class="btn btn-success" style="width: 20%;margin-right: 38%; margin-top: 4%; margin-bottom: -1%;">ثبت تصویر پروفایل</button>
+
+                    </div>
+                </form>
+            </div>
+
+
+
+
+            <div id="search-box" class="well" style="width: 48%; border: black; margin-right: 230px; min-height: 400px;">
+                 <ul class="errorlist" style="list-style-type: none; margin-bottom: 20px;">
+                     {% if bad_date %}
+                                    <li style="color: pink">* برای تغییر تاریخ تولد، لطفا تاریخ را کامل و معتبر و سال را ۴ رقمی وارد کنید.</li>
+                         {% endif %}
+                     {% if bad_mobile %}
+                         <li style="color: pink">* لطفا شماره موبایل را ۱۱ رقمی وارد کنید.</li>
+                     {% endif %}
+                 </ul>
+
+                <h2 style="position: relative;top: -15px; text-align: center;margin-right: -23px;">تنظیمات اطلاعات کاربری</h2>
+                <h3 style="color: white; margin-right: 70px; margin-top: 10px; width: 300px;"><span style="font-size: 20px">نام کاربری شما:‌ </span>{{ user.username }}</h3>
+                <form method="post" role="form" action="/user_info/">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+
+
+
+
+
+
+
+                        <table>
+                            <tbody><tr><th></th><td><input class="form-control register-inputs" id="id_first_name" value="{{ user.first_name }}" maxlength="100" name="first_name" placeholder="نام (فارسی)" style="direction: rtl;" type="text"></td></tr>
+<tr><th></th><td><input class="form-control register-inputs" id="id_last_name" maxlength="100" name="last_name" value="{{ user.last_name }}" placeholder="نام خانوادگی (فارسی)" style="direction: rtl;" type="text"></td></tr>
+<tr><th></th><td><input class="form-control register-inputs" id="id_mobile_number" maxlength="100" value="{{ my_user_info.mobile_number }}" name="mobile_number" placeholder="تلفن همراه ،۱۱ رقم وارد کنید." style="direction: ltr;" type="text"></td></tr>
+<tr><th></th><td><select class="form-control register-inputs" id="id_last_educational_level" name="last_educational_level" style="text-align-last:center;">
+<option value="0">مدرک تحصیلی</option>
+
+    {% if my_user_info.last_educational_level == 'دیپلم' %}
+        <option value="1" selected>دیپلم</option>
+    {% else  %}
+        <option value="1">دیپلم</option>
+    {% endif %}
+
+    {% if my_user_info.last_educational_level == 'فوق دیپلم' %}
+        <option value="2" selected>فوق دیپلم</option>
+    {% else %}
+        <option value="2">فوق دیپلم</option>
+    {% endif %}
+
+    {% if my_user_info.last_educational_level == 'کارشناسی' %}
+        <option value="3" selected>کارشناسی</option>
+    {% else %}
+        <option value="3">کارشناسی</option>
+    {% endif %}
+
+    {% if my_user_info.last_educational_level == 'کارشناشی ارشد' %}
+        <option value="4" selected>کارشناشی ارشد</option>
+    {% else %}
+        <option value="4">کارشناشی ارشد</option>
+    {% endif %}
+
+    {% if my_user_info.last_educational_level == 'دکتری' %}
+        <option value="5" selected>دکتری</option>
+    {% else %}
+        <option value="5">دکتری</option>
+    {% endif %}
+
+
+</select></td></tr>
+<tr><th></th><td><input class="form-control register-inputs" id="id_last_educational_University" maxlength="500" value="{{ my_user_info.last_educational_University }}" name="last_educational_University" placeholder="آخرین دانشگاه محل تحصیل (فارسی)" style="direction: rtl;" type="text"></td></tr>
+<tr><th><label for="id_day">تاریخ تولد:</label></th><td><input class="form-control register-inputs" id="id_day" maxlength="2" value="{{ day }}" name="day" placeholder=" روز" style="direction: ltr; width:60px; text-align-last:center; display:inline;" type="text"></td></tr>
+<tr><th></th><td><input class="form-control register-inputs" id="id_month" maxlength="2" value="{{ month }}" name="month" placeholder=" ماه" style="direction: ltr; width:60px; text-align-last:center; display:inline;" type="text"></td></tr>
+<tr><th></th><td><input class="form-control register-inputs" id="id_year" maxlength="4" name="year" value="{{ year }}" placeholder=" (سال(چهار رقم" style="direction: ltr; width:60px; text-align-last:center; display:inline;" type="text"></td></tr>
+<tr><th></th><td><select class="form-control register-inputs" id="id_city" name="city" style="text-align-last:center;">
+<option value="0">محل سکونت</option>
+        {% if my_user_info.city == 'تهران' %}
+        <option value="1" selected>تهران</option>
+    {% else  %}
+        <option value="1">تهران</option>
+    {% endif %}
+
+    {% if my_user_info.city == 'اصفهان' %}
+        <option value="2" selected>اصفهان</option>
+    {% else %}
+        <option value="2">اصفهان</option>
+    {% endif %}
+
+    {% if my_user_info.city == 'شیراز' %}
+        <option value="3" selected>شیراز</option>
+    {% else %}
+        <option value="3">شیراز</option>
+    {% endif %}
+
+    {% if my_user_info.city == 'یزد' %}
+        <option value="4" selected>یزد</option>
+    {% else %}
+        <option value="4">یزد</option>
+    {% endif %}
+
+    {% if my_user_info.city == 'مشهد' %}
+        <option value="5" selected>مشهد</option>
+    {% else %}
+        <option value="5">مشهد</option>
+    {% endif %}
+</select></td></tr>
+<tr><th></th><td>
+    {% if my_user_info.sending_daily_email %}
+        <input class="" id="id_sending_daily_email" name="sending_daily_email" style=" position: relative; right: 50px !important; top: -26px !important;" type="checkbox" checked>
+    {% else %}
+        <input class="" id="id_sending_daily_email" name="sending_daily_email" style=" position: relative; right: 50px !important; top: -26px !important;" type="checkbox">
+    {% endif %}
+
+</td></tr>
+                        </tbody></table>
+
+
+                        <p style="font-size: 13px;position: relative; right: 83px; margin-bottom: 14%; top: -50px;">مایل به دریافت خبرنامه به صورت روزانه هستم.</p>
+                        <button type="submit" class="btn btn-success" style="position: absolute; width: 150px; right: 382px; bottom: 74px;">ثبت تغییرات</button>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </div>
+
+
+        <a class="btn btn-success" style="position:relative; right: 531px; bottom: -25px; width: 211px; margin-bottom: 54px;" href="../change_password/">رفتن به صحه‌ی تغییر رمز عبور</a>
+
+
+    <style>
+
+    #id_image{
+{#        margin-top: -25px;#}
+{#        position: relative;#}
+{#        right: 58px;#}
+    }
+    label[for='id_image']{
+        margin-top: -25px;
+        position: relative;
+        right: 42px;
+    }
+    label[for='id_day']{
+        position: relative;
+        right: 55px;
+        top: 10px;
+        width: 50px;
+        margin-right: -70px;
+    }
+    #id_day{
+        margin-right: 50px;
+    }
+    #id_month{
+        position: relative;
+        top: -50px;
+        right: 168px;
+    }
+    #id_year{
+        top: -100px;
+        right: 233px;
+        width: 120px !important;
+    }
+    .select-options{
+        text-align:center;
+        height: 100px;
+    }
+    ::-webkit-input-placeholder {
+        text-align:center;
+        height: 100px;
+    }
+    input[name='sending_daily_email']{
+        width: 18px !important;
+        height: 18px !important;
+        position: relative;
+        right: 52px !important;
+        top: -32px !important;
+    }
+    .errorlist{
+        color: pink;
+        margin-right: -16px;
+        margin-top: 5px;
+    }
+    ul{
+            list-style-type: none;
+    }
+    #id_captcha_1{
+        position: relative;
+        left: 116px;
+        top: -30px;
+        height: 39px;
+        width: 145px;
+        color: rgba(0, 0, 0, 0.73);
+        text-align: center;
+    }
+    .register-inputs{
+        position: relative;
+        width: 300px;
+        height: 40px !important;
+        right: 53px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    input:focus {
+        color: black;
+        text-align: center;
+        direction: ltr;
+    }
+    [value='0']{
+        visibility: hidden;
+    }
+    #id_city{
+        margin-top: -84px;
+        margin-bottom: 29px;
+        text-align-last: center;
+    }
+    tr:nth-last-child(1) input{
+        position: relative;
+        top: -33px;
+    }
+    #search-box{
+        min-height: 670px
+    }
+</style>
+</main>
+{% endblock %}
+
+
+{#<div class="well" style="position: relative; left: 30px; padding: 5px; padding-left: 0; border: black; width: 82%;background-color: rgb(68, 75, 85); margin-right: 100px;">#}
+{#                <form method="post" role="form" enctype="multipart/form-data" action="/profile_pic_setting/">#}
+{#                    {% csrf_token %}#}
+{#                    <div class="form-group">#}
+{##}
+{#                        <p>#}
+{#                            <input id="id_image" type="file" class="" name="image">#}
+{#                         </p>#}
+{#                        <button type="submit" class="btn btn-success" style="width: 20%;margin-right: 37%; margin-top: 4%; margin-bottom: -1%;">ثبت تصویر پروفایل</button>#}
+{##}
+{#                    </div>#}
+{#                </form>#}
+{# </div>#}
+
+{#            <div id="search-box" class="well" style="position: relative; left: 30px; padding: 15px; padding-left: 0; border: black; width: 780px; background-color: rgba(68, 75, 85, 0.85); margin-right: 293px; margin-top: 23px">#}
+{#                <h3 style="color: white; margin-right: 220px; margin-top: 10px;"><span style="font-size: 20px">نام کاربری شما:‌ </span>{{ user.username }}</h3>#}
+{#                <form method="post" role="form">#}
+{#                    {% csrf_token %}#}
+{#                    <div class="form-group">#}
+{##}
+{#                        <table>#}
+{#                            {{ register_edit_form.as_table }}#}
+{#                        </table>#}
+{#                        <p style="font-size: 13px; position: relative; right: 49px;margin-bottom: 14%; top: -22px;">مایل به دریافت خبرنامه به صورت روزانه هستم.</p>#}
+{#                        <button type="submit" class="btn btn-success" style="position: absolute; width: 150px; right: 135px; bottom: 55px;">ثبت نام</button>#}
+{##}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}

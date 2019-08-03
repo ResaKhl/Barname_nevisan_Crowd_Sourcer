@@ -1,0 +1,396 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="fa">
+    <meta charset="UTF-8">
+    <title>
+        برنامه‌نویسان
+    </title>
+    <link href="{% static 'main_and_users/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main_and_users/css/common.css' %}" rel="stylesheet">
+    <link href="{% static 'main_and_users/css/main.css' %}" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{% static 'main_and_users/js/persianumber.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'main_and_users/css/font-awesome.min.css' %}">
+</head>
+<body>
+
+<header>
+    <img src="{% static 'img/main-header.png' %}" width="100%">
+
+    <div id="header-container">
+        <div id="sign-up" class="btn-link"><span><a href="register" class="login-links">ثبت نام</a></span> <i
+                class="fa fa-user-plus"></i></div>
+        <div id="sign-in" class="btn-link"><span><a href="login" class="login-links">ورود</a></span> <i
+                class="fa fa-sign-in"></i></div>
+
+        <div id="header-buttons">
+
+            <a class="pr-btn btn-primary search-btn" href="/search/">
+                جست‌وجوی موقعیت‌ها
+            </a>
+            <a class="pr-btn add-job-btn btn-success" href="/new_project/">
+                تعریف رایگان موقعیت کاری
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="main-container row">
+        <h5>
+            هر مهارتی که پروژه‌ی نرم‌افزاری شما نیازد دارد اینجاست!
+        </h5>
+
+        <div class="col-md-3">
+            <img src="{% static 'main_and_users/img/main-test.png' %}">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'main_and_users/img/main-implementation.png' %}">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'main_and_users/img/main-design.png' %}">
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'main_and_users/img/main-analysis.png' %}">
+        </div>
+
+        <div style="clear: both"></div>
+        <div id="process-arrow">
+            <img src="{% static 'main_and_users/img/main-arrow.png' %}">
+        </div>
+
+        {% for cat in main_cat %}
+            <div class="col-md-3">
+            <span class="process-stage-name main-well">
+                {{ cat.name }}
+            </span>
+            </div>
+        {% endfor %}
+
+        <div style="clear: both"></div>
+
+        {% for subs in sub_cat %}
+            <div class="col-md-3">
+                <ul class="list-unstyled">
+                    {% for sub in subs %}
+                        <li><a class="btn-link process-group" href="/search/0//{{ sub.id }}/0/0/0">
+                            {{ sub.name }}
+                        </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+
+        <div style="clear: both"></div>
+
+        <div id="job-types">
+            <div class="col-md-12">
+                <h4 class="main-well">سه دسته‌ی کلی موقعیت‌های کاری</h4>
+            </div>
+            <div class="col-md-3">
+                <div class="main-well">
+                    <h4>استخدام</h4>
+
+                    <div style="clear: both"></div>
+                    <p>
+                        یه سی توضیحات و از این صحبتا و ایــن بحثا در این حوزه و مربوز
+                        به اینن توافقات و این رسم ها یه سـی توضیحات و از این صحــبتا
+                        و این بحثا در این حوزه و مربوز به اینـن توافقات و این رسـم ها یه
+                        اینن توافقات و این رسم ها یه سی توضیحات و از این صحبتا و این
+                        بحثا در این حوزه و مربــوز به اینن توافقات و این رســم ها یه سی
+                        توضیحات و از این صحـبتا و این بحثا در این حوزه و مربوز به اینن
+                        توافقات و این رسم ها...
+                    </p>
+
+                    <div class="main-count">
+                        {{ hire_count }}
+                        استخدام ثبت شده
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="main-well">
+                    <h4>هم‌تیمی (مشارکت در startup)</h4>
+
+                    <div style="clear: both"></div>
+                    <p>
+                        یه سی توضیحات و از این صحبتا و ایــن بحثا در این حوزه و مربوز
+                        به اینن توافقات و این رسم ها یه سـی توضیحات و از این صحــبتا
+                        و این بحثا در این حوزه و مربوز به اینـن توافقات و این رسـم ها یه
+                        اینن توافقات و این رسم ها یه سی توضیحات و از این صحبتا و این
+                        بحثا در این حوزه و مربــوز به اینن توافقات و این رســم ها یه سی
+                        توضیحات و از این صحـبتا و این بحثا در این حوزه و مربوز به اینن
+                        توافقات و این رسم ها...
+                    </p>
+
+                    <div class="main-count">
+                        {{ co_count }}
+                        همکاری ثبت شده
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="main-well">
+                    <h4>پروژه</h4>
+
+                    <div style="clear: both"></div>
+                    <p>
+                        یه سی توضیحات و از این صحبتا و ایــن بحثا در این حوزه و مربوز
+                        به اینن توافقات و این رسم ها یه سـی توضیحات و از این صحــبتا
+                        و این بحثا در این حوزه و مربوز به اینـن توافقات و این رسـم ها یه
+                        اینن توافقات و این رسم ها یه سی توضیحات و از این صحبتا و این
+                        بحثا در این حوزه و مربــوز به اینن توافقات و این رســم ها یه سی
+                        توضیحات و از این صحـبتا و این بحثا در این حوزه و مربوز به اینن
+                        توافقات و این رسم ها...
+                    </p>
+
+                    <div class="main-count">
+                        {{ project_count }}
+                        پروژه‌ی ثبت شده
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="main-well">
+                    <h4>کاربران</h4>
+
+                    <div style="clear: both"></div>
+                    <p>
+                        یه سی توضیحات و از این صحبتا و ایــن بحثا در این حوزه و مربوز
+                        به اینن توافقات و این رسم ها یه سـی توضیحات و از این صحــبتا
+                        و این بحثا در این حوزه و مربوز به اینـن توافقات و این رسـم ها یه
+                        اینن توافقات و این رسم ها یه سی توضیحات و از این صحبتا و این
+                        بحثا در این حوزه و مربــوز به اینن توافقات و این رســم ها یه سی
+                        توضیحات و از این صحـبتا و این بحثا در این حوزه و مربوز به اینن
+                        توافقات و این رسم ها...
+                    </p>
+
+                    <div class="main-count">
+                        {{ user_count }}
+                        کاربر
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="process-steps">
+            <div class="col-md-5 find-work">
+                چهار مرحله‌ی آسان که برای پیدا کردن کار باید طی شود
+            </div>
+            <div class="col-md-5 col-md-offset-2 find-worker">
+                چهار مرحله‌ی آسانی که برای انجام کار شما باید طی شود
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-5">
+                    <img src="{% static 'main_and_users/img/process-worker-1.png' %}"/>
+
+                    <div>موقعیت های کاری را بررسی نمایید</div>
+                    <div>
+                        (جستجو در سایت + ایمیل اطلاع رسانی)
+                    </div>
+
+
+                    <img src="{% static 'main_and_users/img/process-worker-2.png' %}"/>
+
+                    <div>
+                        برای موقعیت های متناسب خودتان
+                    </div>
+                    <div>
+                        به صورت
+                        <span class="find-work">رایگان</span>
+                        پیشنهاد همکاری ارسال نمایید
+                    </div>
+
+                    <img src="{% static 'main_and_users/img/process-worker-3.png' %}"/>
+
+                    <div>
+                        در صورت پذیرش پیشنهاد
+                    </div>
+                    <div>
+                        کارفرما با شما
+                        <span class="find-work">بدون واسطه</span>
+                        ارتباط می‌گیرد
+                    </div>
+
+                    <img src="{% static 'main_and_users/img/process-worker-4.png' %}"/>
+
+                    <div>
+                        کار جدید شما فراهم شد!
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <img src="{% static 'main_and_users/img/process-line.png' %}" height="100%">
+                </div>
+                <div class="col-md-5">
+
+                    <img src="{% static 'main_and_users/img/process-employer-1.png' %}"/>
+
+                    <div>
+                        به صورت
+                        <span class="find-worker">رایگان</span>
+                        ثبت کنید
+                    </div>
+                    <br/>
+
+                    <img src="{% static 'main_and_users/img/process-employer-2.png' %}"/>
+
+                    <div>
+                        پس از دریافت اولین درخواست همکاری
+                    </div>
+                    <div>
+                        پرداخت انجام می‌شود
+                    </div>
+
+                    <img src="{% static 'main_and_users/img/process-employer-3.png' %}"/>
+
+                    <div>
+                        با تعدادی از متقاضیان
+                        <span class="find-work">بدون واسطه</span>
+                        مذاکره نموده
+                    </div>
+                    <div>
+                        و فعالیت را آغاز نمایید
+                    </div>
+
+                    <img src="{% static 'main_and_users/img/process-employer-4.png' %}"/>
+
+                    <div>
+                        کار شما انجام می‌شود!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="{% static 'main_and_users/img/main-works.png' %}" width="100%">
+
+    <div id="promotion">
+        {% for job in new_jobs %}
+            <div class="promotion-item well">
+            <span>
+                {{ job.title }}
+            </span>
+
+                <div class="promotion-item-project well col-md-3">
+                    <div style="display: inline-block; vertical-align: middle">{{ job.job_type }}</div>
+
+                    <div class="promotion-item-date well">
+                        <span style="display: inline-block; vertical-align: middle">{{ job.date }}</span>
+
+                        <a href="/position/{{ job.id }}">
+                            <div class="promotion-item-see well">
+                                مشاهده‌ی موقعیت
+                                <img src="{% static 'main_and_users/img/arrow-left.png' %}"/>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        {% endfor %}
+        <div style="text-align: center">
+            <a class="btn btn-primary" href="/search/">
+                مشاهده‌ی موارد بیشتر
+            </a></div>
+    </div>
+
+    <div id="why" class="col-md-12">
+        <div class="col-md-9">
+            <h3>
+                چرا برنامه‌نویسان؟
+            </h3>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <img src="{% static 'main_and_users/img/bolet-point.png' %}"/>
+                <span class="bold">کار با استعدادهای درجه‌ی یک:</span>
+                <span>با استفاده از خبره‌ترین افراد در زمینه‌ی برنامه‌نویسی پروژه‌ی خود را به موفقیت حتمی می‌رسانید!</span>
+            </div>
+            <div>
+                <img src="{% static 'main_and_users/img/bolet-point.png' %}"/>
+                <span class="bold">
+                    پول و وقت خود را حفظ کنید و آرامش روانی داشته باشید:
+                </span>
+                <span>
+                    تمامی افراد اینجا کار خود را به خوبی بلدند!
+                </span>
+            </div>
+            <div>
+                <img src="{% static 'main_and_users/img/bolet-point.png' %}"/>
+                <span class="bold">امروز اقدام کنید ، فردا نتیجه بگیرید:</span>
+                <span>زحمت گشتن دنبال افراد متخصص و پیدا کردن فرد مناسب را نکشید!</span>
+            </div>
+            <div>
+                <img src="{% static 'main_and_users/img/bolet-point.png' %}"/>
+                <span class="bold">کنترل کامل بر روی پروژه خود داشته باشید:</span>
+                <span>با استفاده از ابزار پیشرفته برنامه نویسان دیگر نگران روال انجام پروژه خود نباشید!</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'main_and_users/img/why.png' %}" width="100%"/>
+        </div>
+
+        <div style="clear: both"></div>
+
+    </div>
+</main>
+
+
+<footer>
+    <div id="footer-header" class="bottom">
+        <div id="footer-logo">
+            <img src="{% static 'main_and_users/img/logo.png' %}">
+            <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+            </span>
+        </div>
+        <div id="footer-programmers-url">
+            <img src="{% static 'main_and_users/img/programmers-url.png' %}">
+        </div>
+    </div>
+    <div id="footer-links">
+        <ul>
+            <li><a class="btn-link" href="/contact">
+                تماس با ما
+            </a></li>
+            <li><a class="btn-link" href="/about">
+                درباره ما
+            </a></li>
+            <li><a class="btn-link" href="/hire">
+                همکاری
+            </a></li>
+            <li><a class="btn-link" href="/how-to">
+                چگونه کار می‌کند؟
+            </a></li>
+            <li><a class="btn-link" href="/trust">
+                اعتماد و امنیت
+            </a></li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div id="footer-copy-right">
+        تمامی حقوق مادی و معنوی اینسامانه به نام شرکت مهندسین مشاور پرتو پارس شریف محفوظ است.
+    </div>
+    <div id="footer-rules">
+        <a href="/law">
+            قوانین
+        </a>
+        <span>|</span>
+        <a href="/privacy" id="footer-privacy">
+            حریم شخصی
+        </a>
+
+    </div>
+</footer>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('body').persiaNumber('fa');
+
+    });
+
+</script>
+</body>
+</html>

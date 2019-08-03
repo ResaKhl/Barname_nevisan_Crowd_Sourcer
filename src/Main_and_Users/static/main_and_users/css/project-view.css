@@ -1,0 +1,245 @@
+#type {
+    color: #1985e0;
+}
+
+.box {
+    border: solid #080808 1px;;
+    margin-bottom: 5px;
+}
+
+#box-header {
+    padding: 5px;
+}
+
+#box-main {
+    padding: 5px;
+}
+
+#required-skills {
+    background-color: #f0f0f0;
+    padding: 5px 10px 5px 10px;
+    font-size: smaller;
+}
+
+.required-skill {
+    background-color: #343434;
+    font-size: smaller;
+    border: none;
+    margin: 0 0 0 2px;
+    padding: 2px 10px;
+    vertical-align: middle;
+    color: #ffffff;
+}
+
+#deadlines {
+    float: left;
+    background-color: #24282e;
+    padding: 10px;
+    margin: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+i {
+    margin: 5px 20px 5px 5px;
+}
+
+#files span {
+    color: #1985e0;
+}
+
+.description-box {
+    padding: 8px;
+    margin: 8px;
+}
+
+#edit-dsc {
+    font-size: smaller;
+    color: #5e5e5e;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pay-please{
+    text-align: center;
+}
+
+em{
+    font-style: normal;
+    font-weight: bold;
+}
+
+#pay-please-dsc{
+    margin: 15px;
+}
+
+.pay-please a{
+    margin: 25px;
+}
+
+#offer-count{
+    float: left;
+    margin-top: 20px;
+}
+
+.result-offer-count {
+    color: #ffffff;
+    background-color: #17a574;
+    padding: 4px;
+    margin: 0;
+    border: 0;
+}
+
+#offers-dsc{
+    color: #a80404;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.offer-box{
+    background-color: #444b55;
+    margin-right: 70px;
+    margin-left: 70px;
+    padding: 0;
+    height: 250px;
+}
+
+.offer-box-selected{
+    height: 430px;
+}
+
+.offer-number{
+    height: 100%;
+    float: right;
+    color: #ffffff;
+    font-size: 25px;
+    display: inline-block;
+    padding: 4px;
+    background-color: #24282e;
+}
+
+.offer-number > span{
+    display: inline-block;
+    text-align: center;
+    margin-top: 110px;
+}
+
+.offer-number-selected > span{
+    margin-top: 190px;
+}
+
+.offer-dsc{
+    width: 97%;
+    display: inline-block;
+    padding: 10px;
+}
+
+.offer-header > a{
+    float: left;
+}
+
+.offer-header > span{
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.offer-header > a{
+    padding: 3px 6px;
+}
+
+.infos{
+    margin-top: 10px;
+    color: #ffffff;
+    padding: 0;
+}
+
+.infos > .col-md-6{
+    padding: 0;
+}
+
+.offer-dsc-info{
+    margin-right: 5px;
+    padding: 5px;
+    border: 0;
+    height: 150px;
+    background-color: #24282e;
+}
+
+.worker-dsc-info{
+    margin-left: 5px;
+    padding: 5px;
+    height: 150px;
+    border: 0;
+    background-color: #24282e;
+}
+
+.dsc-header{
+    color: #737577;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.infos td > i{
+    margin: 0 2px 10px 0;
+}
+
+.statistics{
+    padding: 1px 3px;
+    border: 0;
+    margin: 0 0 5px;
+    display: inline-block;
+    width: 48px;
+    text-align: center;
+}
+
+.sat-rate{
+    background-color: #2f92e5;
+}
+
+.works-count{
+    background-color: #17a574;
+}
+
+.age{
+    background-color: #c8090a;
+}
+
+.have-skill{
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.offer-header > .disabled{
+    background-color: transparent;
+}
+
+.worker-contact{
+    padding: 10px;
+    margin: 20px 0 0;
+    border: 0;
+    background-color: #5C6471;
+    text-align: center;
+}
+
+.worker-contact .name{
+    color: #ffffff;
+}
+
+.worker-contact table{
+    margin: 0 auto;
+}
+
+.worker-contact td{
+    color: #ffffff;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#worker-count{
+    width: 60px;
+    display: inline-block;
+}
+
+#overall-pay{
+    margin: 10px;
+}

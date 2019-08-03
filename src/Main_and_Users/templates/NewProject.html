@@ -1,0 +1,281 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/search.css" %}" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script src="{% static "js/position.js" %}"></script>
+    <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+{% endblock %}
+
+{% block main-container %}
+
+<main class="container">
+    <div class="row">
+        <h3 style="color: #383838; text-align: center; margin-bottom: 20px; margin-left: 10px;">ایجاد موقعیت جدید کاری</h3>
+        <article class="col-md-10" style="">
+            <div id="search-box" class="well" style="left: 30px; padding: 5px; padding-left: 0px; border: black">
+                <form method="post" role="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="errors">
+                            <ul class="errorlist">
+                                {% if date_none %}
+                                    <li>* لطفا تاریخ‌های مربوطه را وارد کنید.</li>
+                                {% endif %}
+                                {% if bad_year %}
+                                    <li>* لطفا سال را چهار رقمی انتخاب کنید.</li>
+                                {% endif %}
+                                {% if bad_month %}
+                                    <li>* لطفا ماه را حداکثر دو رقمی و معتبر وارد(کمتر از ۱۲) کنید.</li>
+                                {% endif %}
+                                {% if bad_day %}
+                                    <li>* لطفا روز را حداکثر دو رقمی و معتبر وارد(کمتر از ۳۲) کنید.</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                                {% if job_type_zero %}
+                                    <ul class="errorlist" style="list-style-type: none;"><li style="margin-top: 15px;">* لطفا نوع موقعیت را انتخاب کنید.</li></ul>
+                                {% endif %}
+                        <table>
+                            {{ form.as_table }}
+                        </table>
+
+                        {% if title_None %}<ul class="errorlist" style="list-style-type: none;">
+                                    <li style="color: pink">* لطفا عنوان موقعیت کاری را وارد کنید.</li></ul>{% endif %}
+
+                        <input type="text" name="title" class="form-control register-inputs" placeholder="عنوان پروژه"  style="width: 98%"/>
+
+                        {% if skills_is_None %}<ul class="errorlist" style="list-style-type: none;">
+                                    <li style="color: pink">* لطفا حرفه‌های مربوط به این موقعیت کاری را انتخاب کنید.</li></ul>{% endif %}
+                        <p style="margin-right: 8px; margin-top: 10px;" >*مهارت‌ها را حتما از پیشنهاد‌هایی که داده می‌شود بردارید. در غیر‌ این صورت مهارت‌های غیر معتبر در موقعیت شما درج نمی‌شود.</p>
+                        <div><input type="text" class="form-control register-inputs " id="id_username" placeholder="مهارت‌های لازم" autocomplete="off" style="display:inline-block;width: 55%;" /><span class="btn-link" style="display:inline-block;height: 30px;width: 30px; background-color: #b4c8ac; border-radius: 20%; margin-right: 15px;"><img id="add-skill" onclick="addSkill()" class="search-icon"
+                                             src="{% static 'img/plus.png' %}" style="height: 30px; width: 30px; margin-right: 0px;"></span></div>
+                        <div id="search-results" style="width: 440px; margin-top: 0px; position: absolute;z-index: 1; display: none;">
+                        </div>
+                        <br>
+
+                        <span id="search-skills">
+                        </span>
+
+{#                        <span class="glyphicon glyphicon-plus btn btn-default btn-lg" style="margin-top: -65px; margin-right: 371px; height: 40px;"></span>#}
+                        <input id="search-skills2" name="search-skills2" style="color: black; display: none"/>
+
+                        <h5 style="margin-right: 5px;">تاریخ بسته شدن موقعیت در سامانه:</h5>
+                        <table>
+                            {{ form3.as_table }}
+                        </table>
+
+                        <h5 style="margin-right: 5px; margin-top: -70px">حداکثر زمان ممکن برای تحویل پروژه(ددلاین):</h5>
+                        <table>
+                            {{ form2.as_table }}
+                        </table>
+
+{#                         <div class="errors"><ul class="errorlist"></ul>{% if description_None %}#}
+{#                                    <li>* لطفا حرفه‌های مربوط به این موقعیت کاری را انتخاب کنید.</li>#}
+{#                                {% endif %}</div>#}
+                        <textarea type="text" name="description" class="form-control register-inputs" placeholder="توضیحات تکمیلی"  style="width: 98%; min-height: 250px; resize: none; margin-top: -75px;"></textarea>
+                        <table style="margin-top: 10px;">
+                            {{ form1.as_table }}
+                        </table>
+                        <button type="submit" class="btn btn-success" style="width: 20%;margin-right: 37%; margin-top: 4%; margin-bottom: -1%;">ثبت موقعیت</button>
+
+                        <script type="text/javascript">
+
+
+                                var availableTags = ['ali','naghi'];
+                                var input = document.querySelector("#id_username")
+                                function myFunction12(i) {
+{#                                var username = input.value;#}
+{#                                var x = document.getElementById("search-results");#}
+{#                                while (x.length > 0) {#}
+{#                                    x.remove(x.length-1);#}
+{#                                }#}
+{#                                var xhr = new XMLHttpRequest();#}
+{#                                xhr.open('post', '/new_project_get_skills/?name=' + username);#}
+{##}
+{#                                xhr.onreadystatechange = function() {#}
+{#                                    if(xhr.readyState === 4) {#}
+{#                                        if(xhr.status === 200) {#}
+{#                                            var data = JSON.parse(xhr.responseText);#}
+{##}
+{#                                            availableTags = [];#}
+{#                                            for(var i in data) {#}
+{#                                                availableTags.push(data[i]);#}
+{##}
+{#                                            }#}
+{##}
+{#                                        }#}
+{#                                    }#}
+{#                                };#}
+{#                                xhr.send(null);#}
+                                    $( "#id_username" ).autocomplete({
+                                  source: i
+                                });
+                                }
+
+
+                            skills = [];
+                            function getSkill() {
+                                var my = document.getElementById("id_username").value;
+                                document.getElementById("id_username").value = ''
+                                return my;
+                            }
+
+                            function removeSkill(id) {
+                                var skill = document.getElementById(id);
+                                var index = skills.indexOf(skill.childNodes.item(0).innerHTML);
+                                var skill_for_removing = skill.childNodes.item(0).innerHTML;
+                                var all_skills_in_input = document.getElementById('search-skills2').value;
+                                var all_skills_in_input1 = all_skills_in_input.split(',');
+                                var i=0;
+                                var skills_for_input = '';
+                                while(i<all_skills_in_input1.length){
+                                    if(skill_for_removing==all_skills_in_input1[i]){
+
+                                    }
+                                    else {
+                                        skills_for_input += all_skills_in_input1[i] +',';
+                                    }
+                                    i +=1;
+                                }
+                                console.log(skills_for_input);
+                                document.getElementById('search-skills2').value = skills_for_input;
+                                if (index != -1)
+                                    skills.splice(index, 1);
+                                document.getElementById("search-skills").removeChild(skill);
+                            }
+
+                            function addSkill() {
+                                var skill_string = getSkill();
+                                if(skill_string==''){
+                                    alert('لطفا یک مهارت انتخاب کنید!')
+                                    exit;
+                                }
+                                if (skills.indexOf(skill_string) != -1) {
+                                    alert("این مهارت تکراری است.")
+                                    return;
+                                }
+                                var skill_container = document.getElementById("search-skills");
+                                var skill_span = document.createElement("span");
+                                skill_span.dir = "rtl";
+                                skill_span.className = "well added-skill";
+                                var index = skills.push(skill_string);
+                                document.getElementById('search-skills2').value += ','+skill_string;
+                                skill_span.id = "search-skill-" + index;
+                                var skill_span_name = document.createElement("sapn");
+                                skill_span_name.innerHTML = skill_string;
+                                var skill_remove = document.createElement("a");
+                                skill_remove.className = "btn-link";
+                                var skill_remove_icon = document.createElement("img");
+                                skill_remove_icon.className = "search-icon";
+                                skill_remove_icon.src = "/static/img/remove.png";
+                                skill_remove_icon.setAttribute("onclick", "removeSkill(\"" + skill_span.id + "\")");
+                                skill_remove.appendChild(skill_remove_icon);
+                                skill_span.appendChild(skill_span_name);
+                                skill_span.appendChild(skill_remove);
+                                skill_container.appendChild(skill_span);
+                            }
+                        </script>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </div>
+</main>
+
+<style>
+    .errorlist{
+        color: pink;
+        margin-right: -16px;
+        margin-top: 5px;
+    }
+    label, #id_filename{
+        margin-right: 10px;
+    }
+    #id_month{
+        position: relative;
+        top: -45px;
+        right: 70px;
+
+    }
+    #id_year{
+        top: -90px;
+        right: 135px;
+    }
+    #id_month1{
+        position: relative;
+        top: -45px;
+        right: 70px;
+
+    }
+    #id_year1{
+        top: -90px;
+        right: 135px;
+    }
+    .option{
+        color: #191919 !important;
+    }
+    .glyphicon-plus:before {
+        content: "\002b";
+        position: relative;
+        top: -3px;
+    }
+    ::-webkit-input-placeholder {
+        text-align:right;
+        height: 100px;
+    }
+    .register-inputs{
+        position: relative;
+        width: 300px;
+        height: 40px !important;
+        right: 5px;
+        text-align: right;
+        margin-top: 5px;
+    }
+    .needed-skill1{
+        margin-right: 11px;
+        position: relative !important;
+        top: -30px;
+    }
+    option[value='0']{
+        visibility: hidden;
+    }
+    #search-results{
+        background: white;
+        color: #444b55;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+    .added-skill {
+        background-color: #343434;
+        display: inline-block;
+        border: none;
+        margin: 7px 3px 0;
+        padding: 5px 10px;
+        color: #ffffff;
+        height: 30px;
+        min-width: 60px;
+        margin-right: 0px;
+    }
+    .search-icon{
+        margin-right: 5px;
+    }
+    ul{
+        list-style-type: none;
+    }
+    .errorlist > li{
+        margin-bottom: 10px;
+        margin-right: -10px;
+    }
+</style>
+{% endblock %}

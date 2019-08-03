@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="fa">
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main_and_users/css/common.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script src="{% static 'main_and_users/js/persianumber.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+    {% block header %}{% endblock %}
+</head>
+<body onload="myFunction12({{ mylist }})"></body>
+<header style="display:table;width: 100%;">
+        <div id="user-info" style="display:table-cell;vertical-align:middle;">
+    {% if firstname|length > 0 or lastname|length > 0 %}
+            <a href="/user_info/"><img id="user-img" src='/media/{{ photo }}'
+                                         style="margin-right: 20px; border-radius: 10%; height: 60px; width: 60px;"></a>
+        <span id="header-user-text">
+            <div class="white-text">
+                <a href="/user_info/" style="color: white;"><span>{{ firstname }}</span>
+                    <span>{{ lastname }}</span></a>
+            </div>
+            <a id="log-out" href="/logout/">
+                خروج از حساب
+            </a>
+        </span>
+{% else %}
+        <div id="sign-up" class="btn-link"><span><a href="/register" class="login-links">ثبت نام</a></span> <i
+                class="fa fa-user-plus"></i></div>
+        <div id="sign-in" class="btn-link"><span><a href="/login" class="login-links">ورود</a></span> <i
+                class="fa fa-sign-in"></i></div>
+
+
+
+    {% endif %}
+        </div>
+    <div id="header-logo">
+        <a href="/">
+            <img src="{% static 'img/logo.png' %}"/>
+        </a>
+        <a href="/">
+        <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+        </span>
+        </a>
+    </div>
+    <a style="float: right;" class="top-link" href="/">
+        صفحه‌ی اصلی
+        <i class="fa fa-home"></i>
+    </a>
+{% if firstname|length > 0 or lastname|length > 0 %}
+    <a style="float: right;" class="top-link" href="/user_info">
+        اطلاعات من
+        <i class="fa fa-home"></i>
+    </a>
+{% endif %}
+    <a style="float: right;" class="top-link" href="/about">
+        درباره‌ی ما
+        <i class="fa fa-info-circle"></i>
+    </a>
+    <a style="float: right;" class="top-link" href="/contact">
+        تماس با ما
+        <i class="fa fa-phone-square"></i>
+    </a>
+
+    <div style="clear: both"></div>
+</header>
+
+<main class="container">
+    <div class="row">
+        <aside id="side-menu" class="col-md-2 well" style="float: right">
+            <ul>
+                <li>
+                    <img src="{% static 'img/ic-user-info.png' %}">
+                    <a class="btn-link" href="/user_info/">
+                        اطلاعات من
+                    </a>
+                </li>
+                <li>
+                    <img src="{% static 'img/ic-user-skills.png' %}">
+                    <a class="btn-link" href="/show_my_skills/">
+                        مهارت‌های من
+                    </a>
+                </li>
+                <li>
+                    <img src="{% static 'img/ic-user-as-contractor.png' %}">
+                    <a class="btn-link" href="/me-employer/">
+                        من به عنوان کارفرما
+                    </a>
+                </li>
+                <li>
+                    <img src="{% static 'img/ic-user-as-worker.png' %}">
+                    <a class="btn-link" href="/me-employee/">
+                        من به عنوان مجری
+                    </a>
+                </li>
+                <li>
+                    <img src="{% static 'img/ic-user-transaction.png' %}">
+                    <a class="btn-link">
+                        تراکنش‌های مالی
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        {% block main-container %}{% endblock %}
+    </div>
+</main>
+
+<footer>
+    <div id="footer-header">
+        <div id="footer-logo">
+            <a href="/" style="display: block">
+                <img src="{% static 'img/logo.png' %}">
+            </a>
+            <a href="/" style="display: block">
+            <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+            </span>
+            </a>
+        </div>
+        <div id="footer-programmers-url">
+            <a href="/">
+                <img src="{% static 'img/programmers-url.png' %}">
+            </a>
+        </div>
+    </div>
+    <div id="footer-links">
+        <ul>
+            <li><a class="btn-link" href="/contact">
+                تماس با ما
+            </a></li>
+            <li><a class="btn-link" href="/about">
+                درباره ما
+            </a></li>
+            <li><a class="btn-link" href="/hire">
+                همکاری
+            </a></li>
+            <li><a class="btn-link" href="/how-to">
+                چگونه کار می‌کند؟
+            </a></li>
+            <li><a class="btn-link" href="/trust">
+                اعتماد و امنیت
+            </a></li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div id="footer-copy-right">
+        تمامی حقوق مادی و معنوی اینسامانه به نام شرکت مهندسین مشاور پرتو پارس شریف محفوظ است.
+    </div>
+    <div id="footer-rules">
+        <a href="/law">
+            قوانین
+        </a>
+        <span>|</span>
+        <a href="/privacy" id="footer-privacy">
+            حریم شخصی
+        </a>
+
+    </div>
+</footer>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('body').persiaNumber('fa');
+    });
+
+</script>
+{% block last_body %}{% endblock %}
+<style>
+    a:hover {
+        color: #67c2ff;
+        text-decoration: none;
+    }
+</style>
+</body>
+</html>

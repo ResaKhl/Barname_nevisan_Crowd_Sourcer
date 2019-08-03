@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head lang="fa">
+    <meta charset="UTF-8">
+    <title>برنامه‌نویسان | جست‌وجو</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/search.css" rel="stylesheet">
+</head>
+<body>
+<header style="display:table;width: 100%;">`
+    <div id="user-info" style="display:table-cell;vertical-align:middle;">
+        <img id="user-img" src="img/user-img.png">
+
+        <span id="header-user-text">
+            <div class="white-text">
+                امیر گنجوی
+            </div>
+            <span id="log-out">
+                خروج از حساب
+            </span>
+        </span>
+    </div>
+    <div id="header-logo">
+        <img src="img/logo.png"/>
+        <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+        </span>
+    </div>
+    <div style="clear: both"></div>
+</header>
+
+<main class="container">
+    <div class="row">
+        <aside id="side-menu" class="col-md-2 well" style="float: right">
+            <ul>
+                <li>
+                    <img src="img/ic-user-info.png">
+                <span>
+                اطلاعات من
+                </span>
+                </li>
+                <li>
+                    <img src="img/ic-user-skills.png">
+                <span>
+                    مهارت‌های من
+                </span>
+                </li>
+                <li>
+                    <img src="img/ic-user-as-contractor.png">
+                <span>
+                    من به عنوان کارفرما
+                </span>
+                </li>
+                <li>
+                    <img src="img/ic-user-as-worker.png">
+                <span>
+                    من به عنوان مجری
+                </span>
+                </li>
+                <li>
+                    <img src="img/ic-user-transaction.png">
+                <span>
+                    تراکنش‌های مالی
+                    </span>
+                </li>
+            </ul>
+        </aside>
+
+        <article class="col-md-8 col-md-offset-1">
+            <div id="search-box" class="well">
+                <form>
+                    <div class="form-group">
+                        <label for="search-title">
+                            عنوان
+                        </label>
+                        <input type="text" class="form-control" id="search-title"/>
+
+                        <label for="search-group">
+                            دسته
+                        </label>
+                        <select type="text" class="form-control" id="search-group">
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="search-second-row">نوع موقعیت:</span>
+                        <input class="search-second-row" type="checkbox" value="project"> <label
+                            class="search-second-row">پروژه</label>
+                        <input class="search-second-row" type="checkbox" value="hire"> <label class="search-second-row">استخدام</label>
+                        <input class="search-second-row" type="checkbox" value="startup"><label
+                            class="search-second-row">هم‌تیمی (مشارکت در startupها)</label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            مهارت‌ها
+                        </label>
+                        <input id="skill" class="form-control" type="text" placeholder="نام مهارت"/>
+                        <img id="add-skill" class="search-icon" src="img/plus.png">
+                        <span class="well added-skill">
+                            <span>
+                                برنامه‌نویسی
+                            </span>
+                            <img class="search-icon" src="img/remove.png">
+                        </span>
+
+                    </div>
+                </form>
+            </div>
+            <div id="search-results">
+                <div class="search-result">
+                <span class="promote promote-fast">
+                    فوری
+                </span>
+
+                    <div class="result-content">
+                        <div class="result-title">نام پروژه</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        ۱۷
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        پروژه
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        دو روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                    <span class="well result-skill">
+                        جاوا
+                    </span>
+                    <span class="well result-skill">
+                        برنامه‌نویسی
+                    </span>
+                        </div>
+
+                    </div>
+                    <div class="result-see-work">
+                        مشاهده‌ی موقعیت
+                    </div>
+                </div>
+                <div class="search-result">
+                <span class="promote promote-special">
+                    ویژه
+                </span>
+
+                    <div class="result-content">
+                        <div class="result-title">نام پروژه</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        ۱۷
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        پروژه
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        دو روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                    <span class="well result-skill">
+                        جاوا
+                    </span>
+                    <span class="well result-skill">
+                        برنامه‌نویسی
+                    </span>
+                        </div>
+
+                    </div>
+                    <div class="result-see-work">
+                        مشاهده‌ی موقعیت
+                    </div>
+                </div>
+                <div class="search-result">
+                <span class="promote promote-special">
+                    ویژه
+                </span>
+
+                    <div class="result-content">
+                        <div class="result-title">نام پروژه</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        ۱۷
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        پروژه
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        دو روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                    <span class="well result-skill">
+                        جاوا
+                    </span>
+                    <span class="well result-skill">
+                        برنامه‌نویسی
+                    </span>
+                        </div>
+
+                    </div>
+                    <div class="result-see-work">
+                        مشاهده‌ی موقعیت
+                    </div>
+                </div>
+                <div class="search-result">
+                <span class="promote promote-special">
+                    ویژه
+                </span>
+
+                    <div class="result-content">
+                        <div class="result-title">نام پروژه</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        ۱۷
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        پروژه
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        دو روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                    <span class="well result-skill">
+                        جاوا
+                    </span>
+                    <span class="well result-skill">
+                        برنامه‌نویسی
+                    </span>
+                        </div>
+
+                    </div>
+                    <div class="result-see-work">
+                        مشاهده‌ی موقعیت
+                    </div>
+                </div>
+                <div class="search-result">
+                <span class="promote promote-special">
+                    ویژه
+                </span>
+
+                    <div class="result-content">
+                        <div class="result-title">نام پروژه</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        ۱۷
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        پروژه
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        دو روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                    <span class="well result-skill">
+                        جاوا
+                    </span>
+                    <span class="well result-skill">
+                        برنامه‌نویسی
+                    </span>
+                        </div>
+
+                    </div>
+                    <div class="result-see-work">
+                        مشاهده‌ی موقعیت
+                    </div>
+                </div>
+                <div class="search-result">
+                <span class="promote promote-special">
+                    ویژه
+                </span>
+
+                    <div class="result-content">
+                        <div class="result-title">نام پروژه</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        ۱۷
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        پروژه
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        دو روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                    <span class="well result-skill">
+                        جاوا
+                    </span>
+                    <span class="well result-skill">
+                        برنامه‌نویسی
+                    </span>
+                        </div>
+
+                    </div>
+                    <div class="result-see-work">
+                        مشاهده‌ی موقعیت
+                    </div>
+                </div>
+            </div>
+            <div id="result-pages">
+                <img src="img/arrow.png" id="previous-page">
+                <div class="page-no" >
+                    ۱
+                </div>
+                <div class="page-no">
+                    ۲
+                </div>
+                <div class="page-no page-no-selected">
+                    ۳
+                </div>
+                <div class="page-no">
+                    ۴
+                </div>
+                <div class="page-no">
+                    ۵
+                </div>
+                <img src="img/arrow.png" id="next-page">
+            </div>
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div id="footer-header" class="bottom">
+        <div id="footer-logo">
+            <img src="img/logo.png">
+            <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+            </span>
+        </div>
+        <div id="footer-programmers-url">
+            <img src="img/programmers-url.png">
+        </div>
+    </div>
+    <div id="footer-links">
+        <ul>
+            <li><a class="btn-link">
+                تماس با ما
+            </a></li>
+            <li>
+                درباره ما
+            </li>
+            <li>
+                همکاری
+            </li>
+            <li>
+                چگونه کار می‌کند؟
+            </li>
+            <li>
+                اعتماد و امنیت
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div id="footer-copy-right">
+        تمامی حقوق مادی و معنوی اینسامانه به نام شرکت مهندسین مشاور پرتو پارس شریف محفوظ است.
+    </div>
+    <div id="footer-rules">
+        <span>
+            قوانین
+        </span>
+        <span>|</span>
+        <span id="footer-privacy">
+            حریم شخصی
+        </span>
+
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="fa">
+    {% load staticfiles %}
+    {% load widget_tweaks %}
+    <meta charset="UTF-8">
+    <title>
+        برنامه‌نویسان |ثبت نام
+    </title>
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/search.css" %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header style="display:table;width: 100%;">
+    <div id="header-logo">
+        <img src="{% static "main_and_users/img/logo.png" %}"/>
+        <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+        </span>
+    </div>
+    <div style="clear: both"></div>
+</header>
+
+<img src="{% static "main_and_users/img/main-header.png" %}" style="height: 1100px; position: fixed; top: -300px; z-index: -1; width: 100%">
+<main class="container">
+    <div class="row">
+        <article class="col-md-5 col-md-offset-3" style="">
+            <div id="search-box" class="well" style="width: 85%; border: black">
+                <h4 style="position: relative;top: -15px; text-align: center">ثبت نام</h4>
+                    <div>
+                        <style>
+                            #search-box{height:200px;}
+                            footer{
+                                    position: fixed;  width: 100%;  bottom: 0;
+                            }
+                        </style>
+                        <h2 style="font-size: 20px;">حساب کاربری شما با موفقیت فعال گردید.</h2>
+                        <br>
+                        <h3><a href="/login/" style="font-size: 15px;">ورود به سامانه</a></h3>
+                    </div>
+            </div>
+        </article>
+    </div>
+</main>
+
+<style>
+    label[for='id_day']{
+        position: relative;
+        right: 25px;
+        top: 10px;
+        margin-right: -70px;
+    }
+    #id_day{
+        margin-right: 45px;
+    }
+    #id_month{
+        position: relative;
+        top: -50px;
+        right: 138px;
+    }
+    #id_year{
+        top: -100px;
+        right: 205px;
+        width: 120px !important;
+    }
+    .select-options{
+        text-align:center;
+        height: 100px;
+    }
+    ::-webkit-input-placeholder {
+        text-align:center;
+        height: 100px;
+    }
+    .register-inputs{
+        position: relative;
+        width: 300px;
+        height: 40px !important;
+        right: 25px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    #id_sending_daily_email{
+        position: relative;
+        right: 22px !important;
+        height: 15px !important;
+        width: 15px !important;
+        margin-top: -34px;
+    }
+    .errorlist{
+        color: pink;
+        margin-right: -16px;
+        margin-top: 5px;
+    }
+    ul{
+            list-style-type: none;
+    }
+    #id_captcha_1{
+        position: relative;
+        left: 116px;
+        top: -30px;
+        height: 39px;
+        width: 145px;
+        color: rgba(0, 0, 0, 0.73);
+        text-align: center;
+    }
+    .captcha{
+        position: relative;
+        left: -186px;
+        top: -31px;
+        width: 139px;
+        height: 39px;
+    }
+    input:focus {
+        color: black;
+        text-align: center;
+        direction: ltr;
+    }
+    [value='0']{
+        visibility: hidden;
+    }
+    #id_city{
+        margin-top: -84px;
+        margin-bottom: 29px;
+        text-align-last: center;
+    }
+    tr:nth-last-child(2) li{
+        position: relative;
+        top: -33px;
+    }
+    #search-box{
+        min-height: 670px
+    }
+</style>
+<script >
+
+</script>
+
+
+
+<footer>
+    <div id="footer-header" class="bottom">
+        <div id="footer-logo">
+            <img src="{% static "main_and_users/img/logo.png" %}">
+            <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+            </span>
+        </div>
+        <div id="footer-programmers-url">
+            <img src="{% static "main_and_users/img/programmers-url.png" %}">
+        </div>
+    </div>
+    <div id="footer-links">
+        <ul>
+            <li><a class="btn-link">
+                تماس با ما
+            </a></li>
+            <li>
+                درباره ما
+            </li>
+            <li>
+                همکاری
+            </li>
+            <li>
+                چگونه کار می‌کند؟
+            </li>
+            <li>
+                اعتماد و امنیت
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div id="footer-copy-right">
+        تمامی حقوق مادی و معنوی اینسامانه به نام شرکت مهندسین مشاور پرتو پارس شریف محفوظ است.
+    </div>
+    <div id="footer-rules">
+        <span>
+            قوانین
+        </span>
+        <span>|</span>
+        <span id="footer-privacy">
+            حریم شخصی
+        </span>
+
+    </div>
+</footer>
+</body>
+</html>
+
+<script type="javascript">
+
+</script>

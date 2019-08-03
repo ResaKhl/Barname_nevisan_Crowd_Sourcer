@@ -1,0 +1,240 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <script src="{% static "js/position.js" %}"></script>
+{% endblock %}
+
+{% block main-container %}
+
+    {% if time_for_doing_is_none %}
+        <p style="color: rgba(255,0,86,0.64)">*لطفا زمان مورد نیاز را وارد کنید.<p>
+    {% endif %}
+    {% if offered_price_is_none %}
+        <p style="color: rgba(255,0,86,0.64)">*لطفا مبلغ پیشنهادی مورد نیاز را وارد کنید.<p>
+    {% endif %}
+    {% if date_none %}
+        <p style="color: rgba(255,0,86,0.64)">*لطفا اولین تاریخ ممکن برای شروع کار را کامل وارد کنید.<p>
+    {% endif %}{% if bad_year %}
+        <p style="color: rgba(255,0,86,0.64)">*لطفا سال را به صورت ۲ رقمی وارد کنید.<p>
+    {% endif %}{% if offered_price_is_none %}
+        <p style="color: rgba(255,0,86,0.64)">*لطفا ماه را دو رقمی و کمتر از ۱۲ وارد کنید.<p>
+    {% endif %}{% if offered_price_is_none %}
+        <p style="color: rgba(255,0,86,0.64)">*لطفا روز را دو رقمی و کمتر از ۱۲ وارد کنید.<p>
+    {% endif %}
+
+
+    <div class="row">
+        <article class="col-md-7">
+            <div class="box" style="padding-right: 13px; min-height: 507px;">
+                <div id="box-header">
+
+
+                    <h3>
+                {{ position.title }}
+                    </h3>
+
+                    <div id="type">
+                    {{ position.job_type }}
+                    </div>
+                </div>
+                <div class="required-skills">
+                مهارت‌های لازم:
+
+                {% for skill in position.skills.all %}
+
+                    <a style="cursor: pointer;" href="/search/0///1/1/1?skills={{ skill.name }}"><span dir="ltr"
+                                                                                                       class="well required-skill">
+                                {{ skill.name }}
+                    </span></a>
+
+                {% endfor %}
+            </div>
+                <div id="box-main">
+                    <div id="files">
+
+
+                        <h5>فایل‌های پیوست</h5>
+
+                        {% for file in this_position_files %}
+                           <div>
+                            <a href="/media/{{ file.filename }}"><i class="fa fa-file-o"></i><span>{{ file.title }}</span></a>
+                        </div>
+                        {% endfor %}
+{#                        <div>#}
+{#                            <i class="fa fa-file-o"></i><span>نمونه کار.zip</span>#}
+{#                        </div>#}
+{#                        <div>#}
+{#                            <i class="fa fa-file-o"></i><span>نمونه کار.zip</span>#}
+{#                        </div>#}
+{#                        <div>#}
+{#                            <i class="fa fa-file-o"></i><span>نمونه کار.zip</span>#}
+{#                        </div>#}
+{#                        <div>#}
+{#                            <i class="fa fa-file-o"></i><span>نمونه کار.zip</span>#}
+{#                        </div>#}
+                    </div>
+
+                    <div class="description">
+                    <h5>توضیحات تکمیلی</h5>
+
+                    <div class="description-box well" style="height: 228px;">
+                        <p>
+                            {{ position.description }}
+                        </p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div id="offers" style="position: absolute; top: -1px; right: -597px; width: 100%;">
+
+                <div class="offer-box well" style="border-radius: 0; height: 508px; width: 540px;">
+
+                    <div class="offer-dsc">
+
+                        <div style="clear: both;"></div>
+                        <div class="col-md-12 infos">
+
+                            <div class="col-md-6" style="width: 105%; position: relative; right: 22px; top: -10px;">
+                                <div class="worker-dsc-info well">
+                                    <h3 style="margin-top: 2px; margin-bottom: 20px; color: grey; text-align: center;">اطلاعات کارفرما</h3>
+                                    <div>
+                                        <span class="sat-rate statistics well">
+                                            {{ user_score }}٪
+                                        </span>
+                                        رضایت از این کارفرما
+                                    </div>
+                                    <div>
+                                        <span class="works-count statistics well">
+                                            {{ user_works }}
+                                        </span>
+                                        کار از این کارفرما در سامانه ثبت شده است.
+                                    </div>
+                                    <div>
+                                        <span class="age statistics well">
+                                            {{ offers_count }}
+                                        </span>
+                                        پیشنهاد برای این کار تا این لحظه در سامانه ثبت شده است.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                    <div class="deadlines" class="well" style="margin-left: 9px;width: 523px;margin-top: -36px;">
+                        <h3 style="margin-top: 2px; margin-bottom: 20px; color: grey;">زمان بندی موقعیت</h3>
+                        <div>
+                            <span>تاریخ بسته شدن موقعیت در سامانه: </span>
+                            <span>{{ position.closing_time_year }}/{{ position.closing_time_month }}/{{ position.closing_time_day }}</span>
+                        </div>
+                        <div>
+                            <span>حداکثر زمان ممکن برای تحویل پروژه(ددلاین): </span>
+                            <span>{{ position.deadline_year }}/{{ position.deadline_month }}/{{ position.deadline_day }}</span>
+                        </div>
+                    </div>
+
+                        {% if user_anonymous%}
+                            <a type="submit" class="btn btn-success" href="/register/" style="width: 20%; height: 7%; margin-right: 37%; margin-top: 5%; background-color: #17a574;">ثبت نام</a>
+
+                        {% elif offered_done %}
+                            <div class="offer-done">
+                                <div><span>مدت زمان مورد نیاز پیشنهادی شما:</span>
+                                <span> روز{{ offer.time_needed }}</span></div>
+                                <br>
+                                <div style="margin-top: 5px;"><span>اولین تاریخ ممکن پیشنهادی شمابرای شروع کار: </span>
+                                <span>{{ offer.offer_submit_Date_time_year }}/{{ offer.offer_submit_Date_time_month }}/{{ offer.offer_submit_Date_time_day }}</span></div>
+                                <br>
+                                <div style="margin-top: 5px;"><span>مبلغ پیشنهادی شما:</span>
+                                <span> تومان{{ offer.price }}</span></div>
+
+                                {% if is_chosen %}
+
+                                <h4 style="color: pink; margin-right: -10px; margin-top: 8px; width: 400px;">شما برای انجام این پروژه انتخاب شده‌اید</h4>
+                                    <a type="submit" class="btn btn-success" href="/show_comment_employee_to_employer/{{ position.id }}/" style="width: 90%; height: 10%; margin-right: 5%; margin-top: 3%; background-color: #17a574;">ثبت نظر</a>
+
+                                    {% else %}
+                                <h4 style="color: pink; margin-right: -10px; margin-top: 40px; width: 400px;">شما هنوز برای انجام این پروژه انتخاب نشده‌اید.</h4>
+                                    {% endif %}
+                            </div>
+
+
+
+
+
+                        {% else %}
+                            <form method="post">
+                            {% csrf_token %}
+                                <input type="text" name="time_for_doing" class="form-control register-inputs" placeholder="مدت زمان تخمینی برای انجام (روز)" style="margin-top: 0px; margin-right: 17%"/>
+                                <p style="position: absolute;  color: white; width: 140px; margin-right: 102px; margin-top: 8px;">اولین تاریخ ممکن برای شروع کار:</p>
+                                <table>
+                                    {{ form.as_table }}
+                                </table>
+    {#                            <input type="text" name="first_time_for_starting" class="form-control register-inputs" placeholder="اولین تاریخ ممکن برای شروع کار" style=" margin-right: 17%"/>#}
+                                <input type="text" name="offered_price" class="form-control register-inputs"  placeholder="مبلغ پیشنهادی شما(تومان)" style=" margin-right: 17%; margin-top: -93px;"/>
+                                <button type="submit" class="btn btn-success" style="width: 90%; height: 10%; margin-right: 5%; margin-top: 3%; background-color: #17a574;">ثبت پیشنهاد</button>
+                            </form>
+                        {% endif %}
+
+
+
+                    <div style="clear: both"></div>
+                </div>
+            </div>
+
+
+            <style>
+                ::-webkit-input-placeholder {
+                  text-align:center;
+                    height: 100px;
+                }
+                .register-inputs{
+                    position: relative;
+                    width: 314px;
+                    height: 40px !important;
+                    right: 9px;
+                    text-align: center;
+                    margin-top: 10px;
+                }
+                .errorlist{
+                    color: pink;
+                    margin-right: -16px;
+                    margin-top: 5px;
+                }
+                label, #id_filename{
+                    margin-right: 10px;
+                }
+                #id_month{
+                        position: relative;
+                        top: -50px;
+                        right: 287px;
+                }
+                #id_year{
+                    top: -100px;
+                    right: 354px;
+                }
+                #id_day{
+                    direction: ltr;width:60px;text-align-last:center;display:inline;margin-right: 210px;
+                }
+                #side-menu{
+                    display: none;
+                }
+                .offer-done{
+                    color: white;
+                    margin-right: 80px;
+                    width: 400px;
+                    margin-top: 100px;
+                }
+            </style>
+
+        </article>
+        <div class="col-md-7 offer-dsc"></div>
+    </div>
+{% endblock %}

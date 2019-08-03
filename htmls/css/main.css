@@ -1,0 +1,222 @@
+header {
+    padding: 0 !important;
+}
+
+#header-container {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    right: 30px;
+    bottom: 20px;
+}
+
+#sign-up, #sign-in {
+    color: #ffffff;
+    display: inline;
+    margin-right: 10px;
+}
+
+#sign-in {
+    /*margin-le: 10px;*/
+}
+
+#header-buttons {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.pr-btn {
+    display: inline-block;
+    color: #ffffff;
+    width: 180px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 8px;
+}
+
+.search-btn {
+    background-color: #2f8ec4;
+}
+
+.add-job-btn {
+    background-color: #3ea763;
+}
+
+.main-container {
+    margin: 10px 80px;
+    text-align: center;
+}
+
+.main-container > h5{
+    font-weight: bold;
+}
+
+#process-arrow{
+    margin-left: 0;
+    margin-right: 0;
+    right: 80px;
+    left: 80px;
+    position: absolute;
+    align-self: center;
+}
+
+#process-arrow > img{
+    width: 100%;
+}
+
+.main-well{
+    background-color: #f7f7f7;
+    padding: 5px;
+}
+
+#job-types  h4{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+#job-types .main-well{
+    margin: 2px;
+}
+
+#job-types .col-md-4, #job-types .col-md-12{
+    padding-right: 1px;
+    padding-left: 1px;
+}
+
+#job-types p{
+    text-align: right;
+}
+
+.process-stage-name{
+    height: 100%;
+    width: 100px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.list-unstyled{
+    padding: 0;
+    margin: 0;
+}
+
+.process-group{
+    color: gray;
+}
+
+#job-types{
+    margin-top: 30px;
+}
+
+.main-count{
+    margin: -5px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #d0d0d0;
+}
+
+.find-work{
+    color: #3ea763;
+}
+
+.find-worker{
+    color: #2f8ec4;
+}
+
+#process-steps .col-md-5 img{
+    height: 70px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#process-steps .col-md-2{
+    height: 630px;
+}
+
+#promotion{
+    background-color: #444b55;
+    padding: 30px 8px;
+}
+
+.promotion-item{
+    margin: 5px;
+    background-color: #ffffff;
+    padding: 5px;
+    border: 0;
+    font-size: small;
+}
+
+.promotion-item-project{
+    float: left;
+    /*position: absolute;*/
+    /*right: 0;*/
+    width: 340px;
+    text-align: center;
+    padding: 0 3px 0 0;
+    border: 0;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #bde1ca;
+    font-size: small;
+}
+
+.promotion-item > span{
+    vertical-align: middle;
+}
+.promotion-item-project > span{
+    vertical-align: middle;
+}
+.promotion-item-date > span{
+    vertical-align: middle;
+}
+.promotion-item-date{
+    float: left;
+    width: 230px;
+    display: inline-block;
+    padding: 0 3px 0 0;
+    border: 0;
+    margin: 0;
+    vertical-align: middle;
+    background-color: #92cda7;
+    font-size: small;
+}
+.promotion-item-see{
+    float: left;
+    display: inline-block;
+    padding: 4px;
+    border: 0;
+    margin: 0;
+    color: #ffffff;
+    background-color: #3ea763;
+    font-size: small;
+}
+
+#promotion > a{
+    text-align: center;
+    horiz-align: center;
+}
+
+#why h3{
+    margin-bottom: 60px;
+}
+
+#why div{
+    margin-bottom: 30px;
+}
+
+#why .col-md-3{
+    /*position: absolute;*/
+    /*bottom: 70px;*/
+    vertical-align: middle;
+}
+
+#why .bold{
+    font-weight: bold;
+}
+
+#process-steps > .find-work{
+    margin-top: 20px;
+}
+
+#process-steps > .find-worker{
+    margin-top: 20px;
+}

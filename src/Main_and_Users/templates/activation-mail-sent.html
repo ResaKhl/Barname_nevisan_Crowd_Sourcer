@@ -1,0 +1,75 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | پروژه</title>
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/search.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "main_and_users/css/common.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/search.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/project-view.css' %}" rel="stylesheet">
+    <script src="{% static "js/position.js" %}"></script>
+{% endblock %}
+
+{% block main-container %}
+<body>
+<main class="container">
+    <div class="row">
+        {% if job_position_offer1 %}
+            <h3 style="color: black; margin-bottom: 265px;">        پیشنهاد شما ثبت شد.</h3>
+        {% elif position_pending1%}
+            <h3 style="color: black; margin-bottom: 265px; position: relative; right: 30px;">          پروژه‌ی شما برای تایید ارسال شد.</h3>
+
+        {% elif activate %}
+            <h3 style="color: #383838; margin-bottom: 265px;">        ایمیل فعال سازی برای شما ارسال شده است. از ثبت نام شما در سامانه‌ی برنامه نویسان متشکریم.
+        {% endif %}
+</h3>
+    </div>
+</main>
+
+<style>
+    .select-options{
+        text-align:center;
+        height: 100px;
+    }
+    ::-webkit-input-placeholder {
+        text-align:center;
+        height: 100px;
+    }
+    .register-inputs{
+        position: relative;
+        width: 300px;
+        height: 40px !important;
+        right: 22px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    #id_sending_daily_email{
+        position: relative;
+        right: 22px !important;
+        top: 5px !important;
+        height: 15px !important;
+        width: 15px !important;
+    }
+    .errorlist{
+        color: pink;
+        margin-right: -16px;
+        margin-top: 5px;
+    }
+</style>
+
+<script type="javascript">
+    document.getElementsByTagName('UL').class += 'star-shaped-bullet'
+</script>
+
+
+</body>
+{% endblock %}
+<!--<style>-->
+    <!--body{-->
+        <!--background-image: url(img/main-header.png);-->
+    <!--}-->
+<!--</style>-->

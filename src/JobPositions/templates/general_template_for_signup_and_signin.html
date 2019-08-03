@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head lang="fa">
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main_and_users/css/common.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'main_and_users/js/persianumber.js'%}"></script>
+    {% block header %}{% endblock %}
+</head>
+<body>
+<header style="display:table;width: 100%;">
+
+    <div id="header-logo">
+        <a href="/">
+            <img src="{% static 'img/logo.png' %}"/>
+        </a>
+        <a href="/">
+        <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+        </span>
+        </a>
+    </div>
+    <a style="float: right;" class="top-link" href="/">
+        صفحه‌ی اصلی
+        <i class="fa fa-home"></i>
+    </a>
+    <a style="float: right;" class="top-link" href="/about">
+        درباره‌ی ما
+        <i class="fa fa-info-circle"></i>
+    </a>
+    <a style="float: right;" class="top-link" href="/contact">
+        تماس با ما
+        <i class="fa fa-phone-square"></i>
+    </a>
+    <div style="clear: both"></div>
+</header>
+
+<main class="container">
+    <div class="row">
+
+
+        {% block main-container %}{% endblock %}
+    </div>
+</main>
+
+<footer>
+    <div id="footer-header">
+        <div id="footer-logo">
+            <a href="/" style="display: block">
+                <img src="{% static 'img/logo.png' %}">
+            </a>
+            <a href="/" style="display: block">
+            <span>
+                وب‌سایت جامع فریلنسرهای برنامه‌نویس
+            </span>
+            </a>
+        </div>
+        <div id="footer-programmers-url">
+            <a href="/">
+                <img src="{% static 'img/programmers-url.png' %}">
+            </a>
+        </div>
+    </div>
+    <div id="footer-links">
+        <ul>
+            <li><a class="btn-link" href="/contact">
+                تماس با ما
+            </a></li>
+            <li><a class="btn-link" href="/about">
+                درباره ما
+            </a></li>
+            <li><a class="btn-link" href="/hire">
+                همکاری
+            </a></li>
+            <li><a class="btn-link" href="/how-to">
+                چگونه کار می‌کند؟
+            </a></li>
+            <li><a class="btn-link" href="/trust">
+                اعتماد و امنیت
+            </a></li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div id="footer-copy-right">
+        تمامی حقوق مادی و معنوی اینسامانه به نام شرکت مهندسین مشاور پرتو پارس شریف محفوظ است.
+    </div>
+    <div id="footer-rules">
+        <a href="/law">
+            قوانین
+        </a>
+        <span>|</span>
+        <a href="/privacy" id="footer-privacy">
+            حریم شخصی
+        </a>
+
+    </div>
+</footer>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+$('body').persiaNumber('fa');
+});
+
+</script>
+{% block last_body %}{% endblock %}
+</body>
+</html>

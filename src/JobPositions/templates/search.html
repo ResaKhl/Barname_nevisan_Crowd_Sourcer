@@ -1,0 +1,140 @@
+{% extends 'general_template.html' %}
+{% block header %}
+    {% load static %}
+    <title>برنامه‌نویسان | جست‌وجو</title>
+    <link href="{% static 'css/search.css' %}" rel="stylesheet">
+    <script src="{% static "js/search.js" %}"></script>
+    {% if don_t_use_side %}
+        <style>
+            #side-menu {
+                display: none;
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+{% block main-container %}
+    <article class="col-md-8 col-md-offset-1">
+        <div id="search-box" class="well">
+            <form>
+                <div class="form-group">
+                    <label for="search-title">
+                        عنوان
+                    </label>
+                    <input type="text" class="form-control" id="search-title" value="{{ query }}"/>
+
+                    <label for="search-group">
+                        دسته
+                    </label>
+
+                    <select class="form-control" id="search-group">
+
+                        <option value="">همه</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}"
+                                    {% if category.id == cat %}selected="selected"{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <span class="search-second-row">نوع موقعیت:</span>
+                    <input class="search-second-row" type="checkbox" value="project" id="type_proj" {% if is_project %}
+                           checked="checked" {% endif %}> <label
+                        class="search-second-row">پروژه</label>
+                    <input class="search-second-row" type="checkbox" value="hire" id="type_hire" {% if is_hire %}
+                           checked="checked" {% endif %}> <label
+                        class="search-second-row">استخدام</label>
+                    <input class="search-second-row" type="checkbox" value="startup" id="type_team" {% if is_teamwork %}
+                           checked="checked" {% endif %}><label
+                        class="search-second-row">هم‌تیمی (مشارکت در startupها)</label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        مهارت‌ها
+                    </label>
+                    <div><input type="text" class="form-control register-inputs " id="skill" placeholder="مهارت‌های لازم" autocomplete="off" style="display:inline-block;width: 55%;" /><span class="btn-link" style="display:inline-block;height: 30px;width: 30px; background-color: #b4c8ac; border-radius: 20%; margin-right: 15px;"><img id="add-skill" onclick="addSkill()" class="search-icon"
+                                             src="{% static 'img/plus.png' %}" style="height: 30px; width: 30px; margin-right: 0px;"></span></div>
+
+                        <span id="search-skills">
+                        </span>
+                </div>
+                <a type="submit" class="btn btn-success" onclick="doSearch()">جست‌وجو</a>
+            </form>
+        </div>
+        <div id="search-results">
+            {% for offer in results %}
+                <div class="search-result">
+                    {% if offer.is_urgent == 1 %}
+                        <span class="promote promote-fast ">
+فوری
+                        </span>
+                    {% endif %}
+                    {% if offer.is_special == 1 %}
+                        <span class="promote promote-special ">
+ویژه
+                        </span>
+                    {% endif %}
+
+                    <div class="result-content">
+                        <div class="result-title">{{ offer.title }}</div>
+                        <div class="result-offer">
+                    <span>
+                        تعداد پیشنهادات تا این لحظه:
+                    </span>
+                    <span class="result-offer-count well">
+                        {{ offer.offerCount }}
+                    </span>
+                        </div>
+                        <div class="description">
+                    <span class="result-type">
+                        {{ offer.job_type }}
+                    </span>
+                    <span class="result-description-separator">
+                        |
+                    </span>
+                    <span class="result-date">
+                        {{ offer.time_diff.days }}
+                        روز پیش
+                    </span>
+                        </div>
+
+                        <div>
+                    <span class="result-skills-label">
+                        مهارت‌های لازم:
+                    </span>
+                            {% for skill in offer.skills.all %}
+
+                                <a style="cursor: pointer;" href="/search/0///1/1/1?skills={{ skill.name }}"><span
+                                        dir="ltr" class="well result-skill">
+                                {{ skill.name }}
+                    </span></a>
+
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <a href="{{ offer.link }}">
+                        <div class="result-see-work">
+                            مشاهده‌ی موقعیت
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+        </div>
+        {% if page_count > 1 %}
+            <div id="result-pages">
+                <img src="{% static 'img/arrow.png' %}" onclick="goToPage({{ current_page_no|add:-1 }})"
+                     id="previous-page">
+
+                {% for page_no in page_range %}
+                    <div onclick="goToPage({{ page_no }})"
+                         class="page-no {% if page_no == current_page_no %}page-no-selected{% endif %}">
+                        {{ forloop.counter }}
+                    </div>
+                {% endfor %}
+                <img src="{% static 'img/arrow.png' %}" onclick="goToPage({{ current_page_no|add:1 }})" id="next-page">
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}
